@@ -1,6 +1,6 @@
 package model.vo;
 
-public class PessoaVO {
+public class PessoaVO{
 		
 	private String nome;
 	private String endereco;

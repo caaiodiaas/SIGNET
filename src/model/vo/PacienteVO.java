@@ -1,6 +1,6 @@
 package model.vo;
 
-public class PacienteVO {
+public class PacienteVO{
 	
 	private PessoaVO dados;
 	private ProntuarioVO prontuario[];

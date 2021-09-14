@@ -1,8 +1,6 @@
-
-// Criado por Caio Dias e George Felipe.
 package model.vo;
 
-public class MedicoVO {
+public class MedicoVO{
 
 	private PessoaVO dados;
 	private String crm;
