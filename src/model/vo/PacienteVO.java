@@ -1,12 +1,24 @@
-  
-// Criado por Caio Dias e George Felipe.
 package model.vo;
 
 public class PacienteVO {
 	
 	private PessoaVO dados;
+	private Long id;
 	private ProntuarioVO prontuario[];
 	private ConsultaVO consulta[];
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		if(id==null || id < 0) {
+			
+		} else {
+			this.id = id;	
+		}
+	}
 	
 	public PessoaVO getDados() {
 		return dados;
@@ -15,7 +27,7 @@ public class PacienteVO {
 		if(dados == null) {
 			
 		}else {
-			if(dados.getNome().equals("") || dados.getCpf().equals("")) {
+			if(dados.getNome().equals("") || dados.getCpf().equals("") || dados.getLogin().getTipoUsuario() != 2) {
 				
 			}else {
 				this.dados = dados;

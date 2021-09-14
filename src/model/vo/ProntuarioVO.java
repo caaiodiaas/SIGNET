@@ -1,22 +1,25 @@
 package model.vo;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 public class ProntuarioVO {
 
-	private Calendar data;
+	private Date data;
 	private String observacoes;
 	private PacienteVO paciente;
 	private MedicoVO medico;
+	private Long id;
 	
-	public Calendar getData() {
-		return data;
+	
+	
+	public Long getId() {
+		return id;
 	}
-	public void setData(Calendar data) {
-		if(data == null){
+	public void setId(Long id) {
+		if(id==null || id < 0) {
 			
-		}else {
-				this.data = data;
+		} else {
+			this.id = id;	
 		}
 	}
 	
@@ -69,4 +72,12 @@ public class ProntuarioVO {
 			}
 		}
 	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
+	
 }
