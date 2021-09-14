@@ -1,5 +1,3 @@
-  
-// Criado por Caio Dias e George Felipe.
 package model.vo;
 
 public class PacienteVO {
