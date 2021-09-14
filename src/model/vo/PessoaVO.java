@@ -5,6 +5,9 @@ public class PessoaVO{
 	private String nome;
 	private String endereco;
 	private String cpf;
+	private UsuarioVO login;
+	
+	
 	
 	public String getNome() {
 		return nome;
@@ -40,5 +43,12 @@ public class PessoaVO{
 				this.cpf = cpf;
 		}
 	}
+	public UsuarioVO getLogin() {
+		return login;
+	}
+	public void setLogin(UsuarioVO login) {
+		this.login = login;
+	}
+	
 	
 }

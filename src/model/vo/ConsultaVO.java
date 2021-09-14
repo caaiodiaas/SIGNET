@@ -1,35 +1,27 @@
 package model.vo;
 
-import java.util.Calendar;
+import java.sql.Date;
+import java.sql.Time;
 
 public class ConsultaVO {
 	
-	private Calendar data;
-	private Calendar horario;
+	private Date data;
+	private Time horario;
 	private int status;
+	private Long id;
 	private PacienteVO paciente;
 	private MedicoVO medico;
+
 	
-	public Calendar getData() {
-		return data;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setData(Calendar data) {
-		if(data == null){
+	public void setId(Long id) {
+		if(id==null || id < 0) {
 			
-		}else {
-				this.data = data;
-		}
-	}
-	
-	
-	public Calendar getHorario() {
-		return horario;
-	}
-	public void setHorario(Calendar horario) {
-		if(horario == null){
-			
-		}else {
-				this.horario = horario;
+		} else {
+			this.id = id;	
 		}
 	}
 	
@@ -84,4 +76,17 @@ public class ConsultaVO {
 			}
 		}
 	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public Time getHorario() {
+		return horario;
+	}
+	public void setHorario(Time horario) {
+		this.horario = horario;
+	}
+	
 }
