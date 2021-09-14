@@ -1,6 +1,6 @@
 package model.vo;
 
-public class AdministradorVO {
+public class AdministradorVO{
 	
 	private PessoaVO dados;
 
