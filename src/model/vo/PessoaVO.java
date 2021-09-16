@@ -39,9 +39,4 @@ public class PessoaVO extends UsuarioVO{
 		}else {
 				this.cpf = cpf;
 		}
-<<<<<<< Updated upstream
-	}
-=======
->>>>>>> Stashed changes
-	
 }

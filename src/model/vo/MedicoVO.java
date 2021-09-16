@@ -3,13 +3,11 @@ package model.vo;
 public class MedicoVO extends PessoaVO{
 
 	private String crm;
+	private Long id;
 	private float valorConsulta;
+	private String especializacao;
 	private ConsultaVO consultas[];
 	
-<<<<<<< Updated upstream
-	public PessoaVO getDados() {
-		return dados;
-=======
 	public Long getId() {
 		return id;
 	}
@@ -20,25 +18,16 @@ public class MedicoVO extends PessoaVO{
 			this.id = id;	
 		}
 	}
-	
+
 	public int getTipoUsuario() {
 		return super.getTipoUsuario();
->>>>>>> Stashed changes
 	}
 
 	public void setTipoUsuario(int tipoUsuario) {
 		if(tipoUsuario != 1){
 			
 		}else {
-<<<<<<< Updated upstream
-			if(dados.getNome().equals("") || dados.getCpf().equals("")) {
-				
-			}else {
-				this.dados = dados;
-			}
-=======
 			super.setTipoUsuario(tipoUsuario);
->>>>>>> Stashed changes
 		}
 	}
 	
@@ -65,11 +54,24 @@ public class MedicoVO extends PessoaVO{
 		}		
 	}
 	
-	// Não precisa necessariamente ter consultas
+	// NÃ£o precisa necessariamente ter consultas
 	public ConsultaVO[] getConsultas() {
 		return consultas;
 	}
 	public void setConsultas(ConsultaVO[] consultas) {
 		this.consultas = consultas;
 	}
+	
+	public String getEspecializacao() {
+		return especializacao;
+	}
+	public void setEspecializacao(String especializacao) {
+		if(especializacao == null || especializacao.equals("")) {
+			
+		} else {
+			this.especializacao = especializacao;
+		}
+	}
+	
+	
 }
