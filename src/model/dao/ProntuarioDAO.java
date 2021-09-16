@@ -269,7 +269,7 @@ public class ProntuarioDAO extends BaseDAO {
 			return prontuarios;
 		}
 		
-		public void editar(ProntuarioVO vo) {
+		public void editarObservacoes(ProntuarioVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE prontuario SET prontuario_observacoes = ?";
 			PreparedStatement ptst;
@@ -281,4 +281,31 @@ public class ProntuarioDAO extends BaseDAO {
 					e.printStackTrace();
 				}
 		}
+		
+		public void editarData(ProntuarioVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE prontuario SET prontuario_data = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getData());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarId(ProntuarioVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE prontuario SET prontuario_id = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
 	}

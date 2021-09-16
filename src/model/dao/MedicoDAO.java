@@ -337,7 +337,7 @@ public class MedicoDAO extends BaseDAO {
 			return medicos;
 		}
 		
-		public void editar(MedicoVO vo) {
+		public void editarCrm(MedicoVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE medico SET medicos_crm = ?";
 			PreparedStatement ptst;
@@ -349,4 +349,83 @@ public class MedicoDAO extends BaseDAO {
 					e.printStackTrace();
 				}
 		}
+		
+		public void editarCpf(MedicoVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE medico SET medicos_cpf = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getCpf());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarNome(MedicoVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE medico SET pessoa_nome = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getNome());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarEndereco(MedicoVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE medico SET pessoa_endereco = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getEndereco());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarId(MedicoVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE medico SET medicos_id = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarEspecializacao(MedicoVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE medico SET medicos_especializacao = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getEspecializacao());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarValorConsulta(MedicoVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE medico SET medicos_valor_consulta = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setFloat(1,vo.getValorConsulta());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+	
 	}

@@ -29,7 +29,7 @@ public class PacienteDAO extends BaseDAO {
 			}
 	}
 		
-		public void removerByCpf(PacienteVO vo) {
+		public void removerPorCpf(PacienteVO vo) {
 			conn = getConnection();
 			String sql = "DELETE * FROM paciente WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
@@ -193,13 +193,52 @@ public class PacienteDAO extends BaseDAO {
 			return pacientes;
 		}
 		
-		public void editar(PacienteVO vo) {
+		public void editarNome(PacienteVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE paciente SET pessoa_nome = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
 				ptst.setString(1,vo.getNome());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarCpf(PacienteVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE paciente SET pessoa_cpf = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getCpf());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarEndereco(PacienteVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE paciente SET pessoa_endereco = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getEndereco());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarId(PacienteVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE paciente SET paciente_id = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();

@@ -141,7 +141,6 @@ public class ConsultaDAO extends BaseDAO {
 					consultas.add(vo);
 				}
 			} catch (SQLException e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 			return consultas;
@@ -182,7 +181,6 @@ public class ConsultaDAO extends BaseDAO {
 					consultas.add(vo);
 				}
 			} catch (SQLException e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 			return consultas;
@@ -223,7 +221,6 @@ public class ConsultaDAO extends BaseDAO {
 					consultas.add(vo);
 				}
 			} catch (SQLException e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 			return consultas;
@@ -264,7 +261,6 @@ public class ConsultaDAO extends BaseDAO {
 					consultas.add(vo);
 				}
 			} catch (SQLException e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 			return consultas;
@@ -305,19 +301,57 @@ public class ConsultaDAO extends BaseDAO {
 					consultas.add(vo);
 				}
 			} catch (SQLException e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 			return consultas;
 		}
 		
-		public void editar(ConsultaVO vo) {
+		public void editarStatus(ConsultaVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE consulta SET consulta_status = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
 				ptst.setInt(1,vo.getStatus());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarData(ConsultaVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE consulta SET consulta_data = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getData());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarHorario(ConsultaVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE consulta SET consulta_horario = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getHorario());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarId(ConsultaVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE consulta SET consulta_id = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();

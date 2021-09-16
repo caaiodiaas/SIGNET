@@ -15,7 +15,7 @@ public class AdministradorDAO extends BaseDAO {
 
 	public void inserir(AdministradorVO vo) {
 		conn = getConnection();
-		String sql = "INSERT INTO Admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,administrador_id) values (?,?,?,?)";
+		String sql = "INSERT INTO admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,administrador_id) values (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
@@ -79,13 +79,51 @@ public class AdministradorDAO extends BaseDAO {
 			return administradores;
 		}
 		
-		public void editar(AdministradorVO vo) {
+		public void editarNome(AdministradorVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE administrador SET pessoa_nome = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
 				ptst.setString(1,vo.getNome());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		public void editarCpf(AdministradorVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE administrador SET pessoa_cpf = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getCpf());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		public void editarEndereco(AdministradorVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE administrador SET pessoa_endereco = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setString(1,vo.getEndereco());
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}			
+		}
+		
+		public void editarId(AdministradorVO vo) {
+			conn = getConnection();
+			String sql = "UPDATE administrador SET administrador_id = ?";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();
