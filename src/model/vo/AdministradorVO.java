@@ -25,4 +25,5 @@ public class AdministradorVO extends PessoaVO{
 			this.id = id;	
 		}
 	}
+
 }

@@ -113,6 +113,7 @@ public class MedicoDAO extends BaseDAO {
 			String sql = "SELECT * FROM medico";
 			Statement st;
 			ResultSet rs;
+
 			ConsultaDAO dao = new ConsultaDAO();
 			List<MedicoVO> medicos = new ArrayList<MedicoVO>();
 			try {

@@ -23,7 +23,6 @@ public class PacienteDAO extends BaseDAO {
 			ptst.setString(2,vo3.getEndereco());
 			ptst.setString(3,vo3.getCpf());
 			ptst.setLong(4,vo3.getId());
-			
 			ptst.execute();		
 			} catch (SQLException e) {
 				e.printStackTrace();

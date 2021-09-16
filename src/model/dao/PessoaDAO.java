@@ -61,7 +61,7 @@ public class PessoaDAO extends BaseDAO {
 			}
 			return pessoas;
 		}
-		
+  
 		public void editar(PessoaVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE pessoa SET pessoa_nome = ?";

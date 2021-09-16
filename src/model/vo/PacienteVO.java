@@ -21,6 +21,7 @@ public class PacienteVO extends PessoaVO{
 	}
 	
 	public int getTipoUsuario() {
+    
         return super.getTipoUsuario();
     }
 
@@ -37,6 +38,7 @@ public class PacienteVO extends PessoaVO{
 		return prontuarios;
 	}
 	public void setProntuarios(List<ProntuarioVO> prontuario) {
+
 		this.prontuarios = prontuario;
 	}
 	

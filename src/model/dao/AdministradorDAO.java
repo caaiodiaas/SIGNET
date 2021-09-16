@@ -12,7 +12,8 @@ import model.vo.AdministradorVO;
 
 public class AdministradorDAO extends BaseDAO {
 	
-		public void inserir(AdministradorVO vo) {
+
+	public void inserir(AdministradorVO vo) {
 		conn = getConnection();
 		String sql = "INSERT INTO Admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,administrador_id) values (?,?,?,?)";
 		PreparedStatement ptst;
@@ -27,8 +28,7 @@ public class AdministradorDAO extends BaseDAO {
 				e.printStackTrace();
 			}
 	}
-		
-
+	
 		public void removerPorId(AdministradorVO vo) {
 			conn = getConnection();
 			String sql = "DELETE * FROM administrador WHERE administrador_id = ?";
@@ -68,6 +68,7 @@ public class AdministradorDAO extends BaseDAO {
 					vo.setCpf(rs.getString("pessoa_cpf"));
 					vo.setEndereco(rs.getString("pessoa_endereco"));
 					vo.setNome(rs.getString("pessoa_nome"));
+
 					vo.setId(rs.getLong("administrador_id"));
 					administradores.add(vo);
 				}
