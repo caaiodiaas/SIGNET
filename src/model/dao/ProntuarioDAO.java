@@ -19,7 +19,7 @@ public class ProntuarioDAO extends BaseDAO {
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setDate(1,vo.getData());
+			ptst.setString(1,vo.getData());
 			ptst.setString(2,vo.getObservacoes());
 			ptst.setString(3,vo3.getNome());
 			ptst.setLong(4,vo3.getId());
@@ -77,7 +77,7 @@ public class ProntuarioDAO extends BaseDAO {
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
-				ptst.setDate(1,vo.getData());
+				ptst.setString(1,vo.getData());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -110,7 +110,7 @@ public class ProntuarioDAO extends BaseDAO {
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
 					
-					vo.setData(rs.getDate("prontuario_data"));
+					vo.setData(rs.getString("prontuario_data"));
 					vo.setObservacoes(rs.getString("prontuario_observacoes"));
 					vo.setId(rs.getLong("prontuario_id"));
 					
@@ -140,13 +140,13 @@ public class ProntuarioDAO extends BaseDAO {
 				ptst = conn.prepareStatement(sql);
 				st = conn.createStatement();
 				rs = st.executeQuery(sql);
-				ptst.setDate(1,vo.getData());
+				ptst.setString(1,vo.getData());
 				
 				while(rs.next()) {
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
 					
-					vo.setData(rs.getDate("prontuario_data"));
+					vo.setData(rs.getString("prontuario_data"));
 					vo.setObservacoes(rs.getString("prontuario_observacoes"));
 					vo.setId(rs.getLong("prontuario_id"));
 					
@@ -182,7 +182,7 @@ public class ProntuarioDAO extends BaseDAO {
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
 					
-					vo.setData(rs.getDate("prontuario_data"));
+					vo.setData(rs.getString("prontuario_data"));
 					vo.setObservacoes(rs.getString("prontuario_observacoes"));
 					vo.setId(rs.getLong("prontuario_id"));
 					
@@ -216,7 +216,7 @@ public class ProntuarioDAO extends BaseDAO {
 				while(rs.next()) {
 					MedicoVO vo2 = new MedicoVO();
 					ProntuarioVO vo = new ProntuarioVO();
-					vo.setData(rs.getDate("prontuario_data"));
+					vo.setData(rs.getString("prontuario_data"));
 					vo.setObservacoes(rs.getString("prontuario_observacoes"));
 					vo.setId(rs.getLong("prontuario_id"));
 					
@@ -250,7 +250,7 @@ public class ProntuarioDAO extends BaseDAO {
 				while(rs.next()) {
 					PacienteVO vo3 = new PacienteVO();
 					ProntuarioVO vo = new ProntuarioVO();
-					vo.setData(rs.getDate("prontuario_data"));
+					vo.setData(rs.getString("prontuario_data"));
 					vo.setObservacoes(rs.getString("prontuario_observacoes"));
 					vo.setId(rs.getLong("prontuario_id"));
 					

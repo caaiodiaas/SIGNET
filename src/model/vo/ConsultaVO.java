@@ -1,13 +1,9 @@
 package model.vo;
 
-import java.sql.Date;
-import java.sql.Time;
-
-
 public class ConsultaVO {
 	
-	private Date data;
-	private Time horario;
+	private String data;
+	private String horario;
 	private int status;
 	private Long id;
 	private PacienteVO paciente;
@@ -69,17 +65,25 @@ public class ConsultaVO {
 			}
 		}
 	
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
-		this.data = data;
-	}
-	public Time getHorario() {
-		return horario;
-	}
-	public void setHorario(Time horario) {
-		this.horario = horario;
+	public void setData(String data) {
+		if(data == null || data.equals("")) {
+			
+		} else {
+			this.data = data;
+		}
 	}
 	
+	public String getHorario() {
+		return horario;
+	}
+	public void setHorario(String horario) {
+		if(horario == null || horario.equals("")) {
+			
+		} else {
+			this.horario = horario;
+		}
+	}
 }

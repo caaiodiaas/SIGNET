@@ -1,11 +1,8 @@
 package model.vo;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class ProntuarioVO {
 
-	private Date data;
+	private String data;
 	private String observacoes;
 	private PacienteVO paciente;
 	private MedicoVO medico;
@@ -66,11 +63,15 @@ public class ProntuarioVO {
 			}
 		}
 	
-	public Calendar getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Calendar data) {
-		this.data = data;
+	public void setData(String data) {
+		if(data == null || data.equals("")) {
+			
+		} else {
+			this.data = data;
+		}
 	}
 	
 	

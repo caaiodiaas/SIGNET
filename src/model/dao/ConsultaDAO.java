@@ -19,8 +19,8 @@ public class ConsultaDAO extends BaseDAO {
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setDate(1,vo.getData());
-			ptst.setTime(2,vo.getHorario());
+			ptst.setString(1,vo.getData());
+			ptst.setString(2,vo.getHorario());
 			ptst.setInt(3,vo.getStatus());
 			ptst.setString(4,vo2.getNome());
 			ptst.setLong(5,vo2.getId());
@@ -93,7 +93,7 @@ public class ConsultaDAO extends BaseDAO {
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
-				ptst.setDate(1,vo.getData());
+				ptst.setString(1,vo.getData());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -127,8 +127,8 @@ public class ConsultaDAO extends BaseDAO {
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
 
-					vo.setData(rs.getDate("consulta_data"));
-					vo.setHorario(rs.getTime("consulta_horario"));
+					vo.setData(rs.getString("consulta_data"));
+					vo.setHorario(rs.getString("consulta_horario"));
 					vo.setStatus(rs.getInt("consulta_status"));
 					vo.setId(rs.getLong("id_consulta"));
 					
@@ -166,8 +166,8 @@ public class ConsultaDAO extends BaseDAO {
 					ConsultaVO vo = new ConsultaVO();
 					MedicoVO vo2 = new MedicoVO();
 					
-					vo.setData(rs.getDate("consulta_data"));
-					vo.setHorario(rs.getTime("consulta_horario"));
+					vo.setData(rs.getString("consulta_data"));
+					vo.setHorario(rs.getString("consulta_horario"));
 					vo.setStatus(rs.getInt("consulta_status"));
 					vo.setId(rs.getLong("id_consulta"));
 					
@@ -207,8 +207,8 @@ public class ConsultaDAO extends BaseDAO {
 					ConsultaVO vo = new ConsultaVO();
 					PacienteVO vo3 = new PacienteVO();
 					
-					vo.setData(rs.getDate("consulta_data"));
-					vo.setHorario(rs.getTime("consulta_horario"));
+					vo.setData(rs.getString("consulta_data"));
+					vo.setHorario(rs.getString("consulta_horario"));
 					vo.setStatus(rs.getInt("consulta_status"));
 					vo.setId(rs.getLong("id_consulta"));
 					
@@ -242,14 +242,14 @@ public class ConsultaDAO extends BaseDAO {
 				ptst = conn.prepareStatement(sql);
 				st = conn.createStatement();
 				rs = st.executeQuery(sql);
-				ptst.setDate(1,vo.getData());
+				ptst.setString(1,vo.getData());
 				while(rs.next()) {
 					
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
 					
-					vo.setData(rs.getDate("consulta_data"));
-					vo.setHorario(rs.getTime("consulta_horario"));
+					vo.setData(rs.getString("consulta_data"));
+					vo.setHorario(rs.getString("consulta_horario"));
 					vo.setStatus(rs.getInt("consulta_status"));
 					vo.setId(rs.getLong("id_consulta"));
 					
@@ -289,8 +289,8 @@ public class ConsultaDAO extends BaseDAO {
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
 					
-					vo.setData(rs.getDate("consulta_data"));
-					vo.setHorario(rs.getTime("consulta_horario"));
+					vo.setData(rs.getString("consulta_data"));
+					vo.setHorario(rs.getString("consulta_horario"));
 					vo.setStatus(rs.getInt("consulta_status"));
 					vo.setId(rs.getLong("id_consulta"));
 					
