@@ -1,6 +1,7 @@
 package model.vo;
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class ProntuarioVO {
 
@@ -65,10 +66,10 @@ public class ProntuarioVO {
 			}
 		}
 	
-	public Date getData() {
+	public Calendar getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(Calendar data) {
 		this.data = data;
 	}
 	

@@ -126,7 +126,7 @@ public class ConsultaDAO extends BaseDAO {
 					ConsultaVO vo = new ConsultaVO();
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
-					
+
 					vo.setData(rs.getDate("consulta_data"));
 					vo.setHorario(rs.getTime("consulta_horario"));
 					vo.setStatus(rs.getInt("consulta_status"));

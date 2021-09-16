@@ -2,7 +2,7 @@ package model.vo;
 
 import java.util.List;
 
-public class PacienteVO extends PessoaVO{
+public class PacienteVO extends UsuarioVO{
 	
 
 	private Long id;

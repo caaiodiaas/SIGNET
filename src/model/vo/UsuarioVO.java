@@ -1,6 +1,6 @@
 package model.vo;
 
-public class UsuarioVO {
+public class UsuarioVO extends PessoaVO{
 	
 	private String login;
 	private String senha;

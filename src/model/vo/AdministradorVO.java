@@ -1,6 +1,6 @@
 package model.vo;
 
-public class AdministradorVO extends PessoaVO{
+public class AdministradorVO extends UsuarioVO{
 	private Long id;
 	
 	public int getTipoUsuario() {
