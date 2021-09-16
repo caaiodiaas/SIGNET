@@ -1,27 +1,46 @@
 package model.vo;
 
-public class MedicoVO{
+public class MedicoVO extends PessoaVO{
 
-	private PessoaVO dados;
 	private String crm;
 	private float valorConsulta;
 	private ConsultaVO consultas[];
 	
+<<<<<<< Updated upstream
 	public PessoaVO getDados() {
 		return dados;
+=======
+	public Long getId() {
+		return id;
 	}
-	public void setDados(PessoaVO dados) {
-		if(dados == null) {
+	public void setId(Long id) {
+		if(id==null || id < 0) {
+			
+		} else {
+			this.id = id;	
+		}
+	}
+	
+	public int getTipoUsuario() {
+		return super.getTipoUsuario();
+>>>>>>> Stashed changes
+	}
+
+	public void setTipoUsuario(int tipoUsuario) {
+		if(tipoUsuario != 1){
 			
 		}else {
+<<<<<<< Updated upstream
 			if(dados.getNome().equals("") || dados.getCpf().equals("")) {
 				
 			}else {
 				this.dados = dados;
 			}
+=======
+			super.setTipoUsuario(tipoUsuario);
+>>>>>>> Stashed changes
 		}
 	}
-	
 	
 	public String getCrm() {
 		return crm;

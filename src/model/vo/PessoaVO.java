@@ -1,6 +1,6 @@
 package model.vo;
 
-public class PessoaVO{
+public class PessoaVO extends UsuarioVO{
 		
 	private String nome;
 	private String endereco;
@@ -39,6 +39,9 @@ public class PessoaVO{
 		}else {
 				this.cpf = cpf;
 		}
+<<<<<<< Updated upstream
 	}
+=======
+>>>>>>> Stashed changes
 	
 }
