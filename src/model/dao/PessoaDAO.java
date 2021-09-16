@@ -7,80 +7,64 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.vo.AdministradorVO;
+import model.vo.PessoaVO;
 
-
-public class AdministradorDAO extends BaseDAO {
+public class PessoaDAO extends BaseDAO {
 	
-		public void inserir(AdministradorVO vo) {
+		public void inserir(PessoaVO vo) {
 		conn = getConnection();
-		String sql = "INSERT INTO Admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,administrador_id) values (?,?,?,?)";
+		String sql = "INSERT INTO pessoa(pessoa_nome,pessoa_endereco,pessoa_cpf) values (?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
-			ptst.setLong(4,vo.getId());
 			ptst.execute();		
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}
 		
-
-		public void removerPorId(AdministradorVO vo) {
+		public void removerPorCpf(PessoaVO vo) {
 			conn = getConnection();
-			String sql = "DELETE * FROM administrador WHERE administrador_id = ?";
+			String sql = "DELETE * FROM pessoa WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
-				ptst.setLong(1,vo.getId());
+				ptst.setString(1,vo.getCpf());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 		}
 		
-		public void removerTudo() {
+		public List<PessoaVO> listar() {
 			conn = getConnection();
-			String sql = "DELETE * FROM administrador";
-			PreparedStatement ptst;
-			try {
-				ptst = conn.prepareStatement(sql);
-				ptst.executeUpdate();		
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
-				
-		public List<AdministradorVO> listar() {
-			conn = getConnection();
-			String sql = "SELECT * FROM administrador";
+			String sql = "SELECT * FROM pessoa";
 			Statement st;
 			ResultSet rs;
-			List<AdministradorVO> administradores = new ArrayList<AdministradorVO>();
+			List<PessoaVO> pessoas = new ArrayList<PessoaVO>();
 			try {
 				st = conn.createStatement();
 				rs = st.executeQuery(sql);
 				while(rs.next()) {
-					AdministradorVO vo = new AdministradorVO();
+					PessoaVO vo = new PessoaVO();
 					vo.setCpf(rs.getString("pessoa_cpf"));
 					vo.setEndereco(rs.getString("pessoa_endereco"));
 					vo.setNome(rs.getString("pessoa_nome"));
-					vo.setId(rs.getLong("administrador_id"));
-					administradores.add(vo);
+					pessoas.add(vo);
 				}
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			return administradores;
+			return pessoas;
 		}
 		
-		public void editar(AdministradorVO vo) {
+		public void editar(PessoaVO vo) {
 			conn = getConnection();
-			String sql = "UPDATE administrador SET pessoa_nome = ?";
+			String sql = "UPDATE pessoa SET pessoa_nome = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);

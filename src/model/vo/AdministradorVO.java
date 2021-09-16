@@ -1,24 +1,28 @@
 package model.vo;
 
-public class AdministradorVO {
+public class AdministradorVO extends PessoaVO{
+	private Long id;
 	
-	private PessoaVO dados;
-	
+	public int getTipoUsuario() {
+        return super.getTipoUsuario();
+    }
 
-	public PessoaVO getDados() {
-		return dados;
+    public void setTipoUsuario(int tipoUsuario) {
+        if(tipoUsuario != 0){
+
+        }else {
+            super.setTipoUsuario(tipoUsuario);
+        }
+    }
+	
+	public Long getId() {
+		return id;
 	}
-	
-	
-	public void setDados(PessoaVO dados) {
-		if(dados == null) {
+	public void setId(Long id) {
+		if(id==null || id < 0) {
 			
-		}else {
-			if(dados.getNome().equals("") || dados.getCpf().equals("") || dados.getLogin().getTipoUsuario() != 0) {
-				
-			}else {
-				this.dados = dados;
-			}
+		} else {
+			this.id = id;	
 		}
 	}
 }

@@ -1,11 +1,10 @@
 package model.vo;
 
-public class PessoaVO {
+public class PessoaVO extends UsuarioVO{
 		
 	private String nome;
 	private String endereco;
 	private String cpf;
-	private UsuarioVO login;
 	
 	
 	
@@ -42,13 +41,5 @@ public class PessoaVO {
 		}else {
 				this.cpf = cpf;
 		}
-	}
-	public UsuarioVO getLogin() {
-		return login;
-	}
-	public void setLogin(UsuarioVO login) {
-		this.login = login;
-	}
-	
-	
+}
 }

@@ -1,13 +1,13 @@
 package model.vo;
 
-public class PacienteVO {
+import java.util.List;
+
+public class PacienteVO extends PessoaVO{
 	
-	private PessoaVO dados;
+
 	private Long id;
-	private ProntuarioVO prontuario[];
-	private ConsultaVO consulta[];
-	
-	
+	private List<ProntuarioVO> prontuarios;
+	private List<ConsultaVO> consultas;
 	
 	public Long getId() {
 		return id;
@@ -20,34 +20,31 @@ public class PacienteVO {
 		}
 	}
 	
-	public PessoaVO getDados() {
-		return dados;
+	public int getTipoUsuario() {
+        return super.getTipoUsuario();
+    }
+
+    public void setTipoUsuario(int tipoUsuario) {
+        if(tipoUsuario != 2){
+
+        }else {
+            super.setTipoUsuario(tipoUsuario);
+        }
+    }
+	
+	// N√£o precisa necessariamente ter um prontu√°rio
+	public List<ProntuarioVO> getProntuarios() {
+		return prontuarios;
 	}
-	public void setDados(PessoaVO dados) {
-		if(dados == null) {
-			
-		}else {
-			if(dados.getNome().equals("") || dados.getCpf().equals("") || dados.getLogin().getTipoUsuario() != 2) {
-				
-			}else {
-				this.dados = dados;
-			}
-		}
+	public void setProntuarios(List<ProntuarioVO> prontuario) {
+		this.prontuarios = prontuario;
 	}
 	
-	// N„o precisa necessariamente ter um prontu·rio
-	public ProntuarioVO[] getProntuario() {
-		return prontuario;
+	// N√£o precisa necessariamente ter consultas
+	public List<ConsultaVO> getConsultas() {
+		return consultas;
 	}
-	public void setProntuario(ProntuarioVO[] prontuario) {
-		this.prontuario = prontuario;
-	}
-	
-	// N„o precisa necessariamente ter consultas
-	public ConsultaVO[] getConsulta() {
-		return consulta;
-	}
-	public void setConsulta(ConsultaVO[] consulta) {
-		this.consulta = consulta;
+	public void setConsultas(List<ConsultaVO> consulta) {
+		this.consultas = consulta;
 	}
 }
