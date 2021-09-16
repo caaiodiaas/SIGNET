@@ -13,7 +13,7 @@ import model.vo.PessoaVO;
 
 public class AdministradorDAO extends BaseDAO {
 	
-	public void inserir(PessoaVO vo) {
+	public void inserir(AdministradorVO vo) {
 		conn = getConnection();
 		String sql = "INSERT INTO Admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,pessoa_id) values (?,?,?,?)";
 		PreparedStatement ptst;
@@ -27,7 +27,7 @@ public class AdministradorDAO extends BaseDAO {
 				e.printStackTrace();
 			}
 	}
-		public void removerByCpf(PessoaVO vo) {
+		public void removerByCpf(AdministradorVO vo) {
 			conn = getConnection();
 			String sql = "DELETE FROM paciente WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
@@ -50,13 +50,11 @@ public class AdministradorDAO extends BaseDAO {
 				st = conn.createStatement();
 				rs = st.executeQuery(sql);
 				while(rs.next()) {
-					PessoaVO vo = new PessoaVO();
-					AdministradorVO vo2 = new AdministradorVO();
+					AdministradorVO vo = new AdministradorVO();
 					vo.setCpf(rs.getString("pessoa_cpf"));
 					vo.setEndereco(rs.getString("pessoa_endereco"));
 					vo.setNome(rs.getString("pessoa_nome"));
-					vo2.setDados(vo);
-					administradores.add(vo2);
+					administradores.add(vo);
 				}
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -65,7 +63,7 @@ public class AdministradorDAO extends BaseDAO {
 			return administradores;
 		}
 		
-		public void editar(PessoaVO vo) {
+		public void editar(AdministradorVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE administrador SET pessoa_nome = ?";
 			PreparedStatement ptst;

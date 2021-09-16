@@ -27,7 +27,7 @@ public class MedicoDAO extends BaseDAO {
 			ptst.setFloat(5,vo2.getValorConsulta());
 			ptst.setString(6,vo2.getEspecializacao());
 			
-			//ptst.setConsulta(7,vo3.getConsulta());
+			//ptst.setConsultas(7,vo3.getConsultas());
 			
 			ptst.execute();		
 			} catch (SQLException e) {
@@ -59,11 +59,9 @@ public class MedicoDAO extends BaseDAO {
 				rs = st.executeQuery(sql);
 				while(rs.next()) {
 					MedicoVO vo = new MedicoVO();
-					PessoaVO vo2 = new PessoaVO();
-					vo2.setCpf(rs.getString("pessoa_cpf"));
-					vo2.setEndereco(rs.getString("pessoa_endereco"));
-					vo2.setNome(rs.getString("pessoa_nome"));
-					vo.setDados(vo2);
+					vo.setCpf(rs.getString("pessoa_cpf"));
+					vo.setEndereco(rs.getString("pessoa_endereco"));
+					vo.setNome(rs.getString("pessoa_nome"));
 					vo.setCrm(rs.getString("medicos_crm"));
 					vo.setValorConsulta(rs.getFloat("medicos_valor_consulta"));
 					vo.setEspecializacao(rs.getString("medicos_especializacao"));

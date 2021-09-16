@@ -23,8 +23,8 @@ public class ProntuarioDAO extends BaseDAO {
 			ptst.setDate(1,vo.getData());
 			ptst.setString(2,vo.getObservacoes());
 			ptst.setLong(3,vo.getId());
-			ptst.setString(5,vo2.getDados().getNome());
-			ptst.setString(6,vo3.getDados().getNome());
+			ptst.setString(5,vo2.getNome());
+			ptst.setString(6,vo3.getNome());
 			ptst.execute();		
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -57,18 +57,15 @@ public class ProntuarioDAO extends BaseDAO {
 					ProntuarioVO vo = new ProntuarioVO();
 					MedicoVO vo2 = new MedicoVO();
 					PacienteVO vo3 = new PacienteVO();
-					PessoaVO vo4 = new PessoaVO();
 					
 					vo.setData(rs.getDate("prontuario_data"));
 					vo.setObservacoes(rs.getString("prontuario_observacoes"));
 					vo.setId(rs.getLong("prontuario_id"));
 					
-					vo4.setNome(rs.getString("pessoa_nome"));
-					vo2.setDados(vo4);
+					vo2.setNome(rs.getString("pessoa_nome"));
 					vo.setMedico(vo2);
 					
-					vo4.setNome(rs.getString("pessoa_nome"));
-					vo3.setDados(vo4);
+					vo3.setNome(rs.getString("pessoa_nome"));
 					vo.setPaciente(vo3);
 
 					prontuarios.add(vo);

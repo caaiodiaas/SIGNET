@@ -3,8 +3,8 @@ package model.vo;
 public class PacienteVO extends PessoaVO{
 	
 	private Long id;
-	private ProntuarioVO prontuario[];
-	private ConsultaVO consulta[];
+	private ProntuarioVO prontuarios[];
+	private ConsultaVO consultas[];
 	
 	public Long getId() {
 		return id;
@@ -30,18 +30,18 @@ public class PacienteVO extends PessoaVO{
 	}
 	
 	// Não precisa necessariamente ter um prontuário
-	public ProntuarioVO[] getProntuario() {
-		return prontuario;
+	public ProntuarioVO[] getProntuarios() {
+		return prontuarios;
 	}
-	public void setProntuario(ProntuarioVO[] prontuario) {
-		this.prontuario = prontuario;
+	public void setProntuarios(ProntuarioVO[] prontuario) {
+		this.prontuarios = prontuario;
 	}
 	
 	// Não precisa necessariamente ter consultas
-	public ConsultaVO[] getConsulta() {
-		return consulta;
+	public ConsultaVO[] getConsultas() {
+		return consultas;
 	}
-	public void setConsulta(ConsultaVO[] consulta) {
-		this.consulta = consulta;
+	public void setConsultas(ConsultaVO[] consulta) {
+		this.consultas = consulta;
 	}
 }
