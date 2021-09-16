@@ -1,8 +1,7 @@
 package model.vo;
 
-public class MedicoVO{
+public class MedicoVO extends PessoaVO{
 
-	private PessoaVO dados;
 	private String crm;
 	private Long id;
 	private float valorConsulta;
@@ -19,22 +18,18 @@ public class MedicoVO{
 			this.id = id;	
 		}
 	}
-	
-	public PessoaVO getDados() {
-		return dados;
+
+	public int getTipoUsuario() {
+		return super.getTipoUsuario();
 	}
-	public void setDados(PessoaVO dados) {
-		if(dados == null) {
+
+	public void setTipoUsuario(int tipoUsuario) {
+		if(tipoUsuario != 1){
 			
 		}else {
-			if(dados.getNome().equals("") || dados.getCpf().equals("") || dados.getLogin().getTipoUsuario() != 1) {
-				
-			}else {
-				this.dados = dados;
-			}
+			super.setTipoUsuario(tipoUsuario);
 		}
 	}
-	
 	
 	public String getCrm() {
 		return crm;
@@ -59,7 +54,7 @@ public class MedicoVO{
 		}		
 	}
 	
-	// Não precisa necessariamente ter consultas
+	// NÃ£o precisa necessariamente ter consultas
 	public ConsultaVO[] getConsultas() {
 		return consultas;
 	}

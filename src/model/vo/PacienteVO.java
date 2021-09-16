@@ -1,13 +1,10 @@
 package model.vo;
 
-public class PacienteVO{
+public class PacienteVO extends PessoaVO{
 	
-	private PessoaVO dados;
 	private Long id;
 	private ProntuarioVO prontuario[];
 	private ConsultaVO consulta[];
-	
-	
 	
 	public Long getId() {
 		return id;
@@ -20,22 +17,19 @@ public class PacienteVO{
 		}
 	}
 	
-	public PessoaVO getDados() {
-		return dados;
+	public int getTipoUsuario() {
+		return super.getTipoUsuario();
 	}
-	public void setDados(PessoaVO dados) {
-		if(dados == null) {
-			
+
+	public void setTipoUsuario(int tipoUsuario) {
+		if(tipoUsuario != 2){
+      
 		}else {
-			if(dados.getNome().equals("") || dados.getCpf().equals("") || dados.getLogin().getTipoUsuario() != 2) {
-				
-			}else {
-				this.dados = dados;
-			}
+			super.setTipoUsuario(tipoUsuario);
 		}
 	}
 	
-	// N„o precisa necessariamente ter um prontu·rio
+	// N√£o precisa necessariamente ter um prontu√°rio
 	public ProntuarioVO[] getProntuario() {
 		return prontuario;
 	}
@@ -43,7 +37,7 @@ public class PacienteVO{
 		this.prontuario = prontuario;
 	}
 	
-	// N„o precisa necessariamente ter consultas
+	// N√£o precisa necessariamente ter consultas
 	public ConsultaVO[] getConsulta() {
 		return consulta;
 	}
