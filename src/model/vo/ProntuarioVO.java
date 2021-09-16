@@ -41,17 +41,13 @@ public class ProntuarioVO {
 		if(paciente == null) {
 			
 		}else {
-			if(paciente.getDados() == null) {
-				
-			}else {
-				if(paciente.getDados().getNome().equals("") || paciente.getDados().getCpf().equals("")){
+				if(paciente.getNome().equals("") || paciente.getCpf().equals("")){
 					
 				}else {
 					this.paciente = paciente;
 				}
 			}
 		}
-	}
 	
 	
 	public MedicoVO getMedico() {
@@ -61,17 +57,14 @@ public class ProntuarioVO {
 		if(medico == null) {
 			
 		}else {
-			if(medico.getDados() == null) {
-				
-			}else {
-				if(medico.getDados().getNome().equals("") || medico.getDados().getCpf().equals("")){
+				if(medico.getNome().equals("") || medico.getCpf().equals("")){
 					
 				}else {
 					this.medico = medico;
 				}
 			}
 		}
-	}
+	
 	public Date getData() {
 		return data;
 	}

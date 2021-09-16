@@ -11,7 +11,7 @@ import model.vo.PessoaVO;
 
 public class PessoaDAO extends BaseDAO {
 	
-	public void inserir(PessoaVO vo) {
+		public void inserir(PessoaVO vo) {
 		conn = getConnection();
 		String sql = "INSERT INTO pessoa(pessoa_nome,pessoa_endereco,pessoa_cpf) values (?,?,?)";
 		PreparedStatement ptst;
@@ -25,9 +25,10 @@ public class PessoaDAO extends BaseDAO {
 				e.printStackTrace();
 			}
 	}
-		public void removerByCpf(PessoaVO vo) {
+		
+		public void removerPorCpf(PessoaVO vo) {
 			conn = getConnection();
-			String sql = "DELETE FROM pessoa WHERE pessoa_cpf = ?";
+			String sql = "DELETE * FROM pessoa WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
@@ -60,6 +61,7 @@ public class PessoaDAO extends BaseDAO {
 			}
 			return pessoas;
 		}
+  
 		public void editar(PessoaVO vo) {
 			conn = getConnection();
 			String sql = "UPDATE pessoa SET pessoa_nome = ?";

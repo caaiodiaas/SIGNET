@@ -8,38 +8,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.vo.AdministradorVO;
-import model.vo.PessoaVO;
 
 
 public class AdministradorDAO extends BaseDAO {
 	
+
 	public void inserir(AdministradorVO vo) {
 		conn = getConnection();
-		String sql = "INSERT INTO Admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,pessoa_id) values (?,?,?,?)";
+		String sql = "INSERT INTO Admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,administrador_id) values (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
+			ptst.setLong(4,vo.getId());
 			ptst.execute();		
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}
-		public void removerByCpf(AdministradorVO vo) {
+	
+		public void removerPorId(AdministradorVO vo) {
 			conn = getConnection();
-			String sql = "DELETE FROM paciente WHERE pessoa_cpf = ?";
+			String sql = "DELETE * FROM administrador WHERE administrador_id = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = conn.prepareStatement(sql);
-				ptst.setString(1,vo.getCpf());
+				ptst.setLong(1,vo.getId());
 				ptst.executeUpdate();		
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 		}
 		
+		public void removerTudo() {
+			conn = getConnection();
+			String sql = "DELETE * FROM administrador";
+			PreparedStatement ptst;
+			try {
+				ptst = conn.prepareStatement(sql);
+				ptst.executeUpdate();		
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+				
 		public List<AdministradorVO> listar() {
 			conn = getConnection();
 			String sql = "SELECT * FROM administrador";
@@ -54,6 +68,8 @@ public class AdministradorDAO extends BaseDAO {
 					vo.setCpf(rs.getString("pessoa_cpf"));
 					vo.setEndereco(rs.getString("pessoa_endereco"));
 					vo.setNome(rs.getString("pessoa_nome"));
+
+					vo.setId(rs.getLong("administrador_id"));
 					administradores.add(vo);
 				}
 			} catch (SQLException e) {

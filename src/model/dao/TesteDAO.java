@@ -14,7 +14,7 @@ public class TesteDAO {
         //MedicoDAO dao3 = new MedicoDAO();
         //PacienteDAO dao4 = new PacienteDAO();
         
-        /*
+    	/*
         List<PessoaVO> pessoas = dao2.listar();
         for (PessoaVO vo2 : pessoas) {
 			System.out.println(vo2.getNome());

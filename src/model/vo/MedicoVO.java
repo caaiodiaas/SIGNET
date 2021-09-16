@@ -1,12 +1,14 @@
 package model.vo;
 
+import java.util.List;
+
 public class MedicoVO extends PessoaVO{
 
 	private String crm;
 	private Long id;
 	private float valorConsulta;
 	private String especializacao;
-	private ConsultaVO consultas[];
+	private List<ConsultaVO> consultas;
 	
 	public Long getId() {
 		return id;
@@ -16,18 +18,6 @@ public class MedicoVO extends PessoaVO{
 			
 		} else {
 			this.id = id;	
-		}
-	}
-
-	public int getTipoUsuario() {
-		return super.getTipoUsuario();
-	}
-
-	public void setTipoUsuario(int tipoUsuario) {
-		if(tipoUsuario != 1){
-			
-		}else {
-			super.setTipoUsuario(tipoUsuario);
 		}
 	}
 	
@@ -54,13 +44,14 @@ public class MedicoVO extends PessoaVO{
 		}		
 	}
 	
-	// Não precisa necessariamente ter consultas
-	public ConsultaVO[] getConsultas() {
+	public List<ConsultaVO> getConsultas() {
 		return consultas;
 	}
-	public void setConsultas(ConsultaVO[] consultas) {
-		this.consultas = consultas;
+	public void setConsultas(List<ConsultaVO> consulta) {
+		this.consultas = consulta;
 	}
+	
+	
 	
 	public String getEspecializacao() {
 		return especializacao;
@@ -73,5 +64,16 @@ public class MedicoVO extends PessoaVO{
 		}
 	}
 	
+	public int getTipoUsuario() {
+        return super.getTipoUsuario();
+    }
+
+    public void setTipoUsuario(int tipoUsuario) {
+        if(tipoUsuario != 1){
+
+        }else {
+            super.setTipoUsuario(tipoUsuario);
+        }
+    }
 	
 }
