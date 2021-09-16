@@ -9,11 +9,10 @@ import java.util.List;
 
 import model.vo.ConsultaVO;
 import model.vo.MedicoVO;
-import model.vo.PessoaVO;
 
 public class MedicoDAO extends BaseDAO {
 	
-	public void inserir(PessoaVO vo, MedicoVO vo2, ConsultaVO vo3) {
+	public void inserir(MedicoVO vo, ConsultaVO vo2) {
 		conn = getConnection();
 		String sql = "INSERT INTO medico(pessoa_nome,pessoa_endereco,pessoa_cpf, medicos_crm, medicos_valor_consulta,medicos_especializacao) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
@@ -22,10 +21,9 @@ public class MedicoDAO extends BaseDAO {
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
-			
-			ptst.setString(4,vo2.getCrm());
-			ptst.setFloat(5,vo2.getValorConsulta());
-			ptst.setString(6,vo2.getEspecializacao());
+			ptst.setString(4,vo.getCrm());
+			ptst.setFloat(5,vo.getValorConsulta());
+			ptst.setString(6,vo.getEspecializacao());
 			
 			//ptst.setConsultas(7,vo3.getConsultas());
 			
