@@ -13,7 +13,7 @@ import model.vo.UsuarioVO;
 public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	
 	public void inserir(VO vo) {
-		String sql = "INSERT INTO usuario(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipoUsuario) values (?,?,?,?,?,?)";
+		String sql = "INSERT INTO usuario(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipoUsuario, usuario_id) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -23,6 +23,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 			ptst.setString(4,vo.getLogin());
 			ptst.setString(5,vo.getSenha());
 			ptst.setInt(6,vo.getTipoUsuario());
+			ptst.setLong(7,vo.getId());
 
 			int affectedRows = ptst.executeUpdate();			
 			
@@ -42,132 +43,139 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 			}
 	}
 	
-	public void removerPorLogin(UsuarioVO vo) {
-		conn = getConnection();
-		String sql = "DELETE * FROM usuario WHERE usuario_login = ?";
+	public void remover(VO vo) {
+		String sql = "DELETE * FROM usuario WHERE usuario_id = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getLogin());
-			ptst.executeUpdate();		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
-	public void removerPorTipoUsuario(UsuarioVO vo) {
-		conn = getConnection();
+	public void removerPorTipoUsuario(VO vo) {
 		String sql = "DELETE * FROM usuario WHERE usuario_tipoUsuario = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setInt(1,vo.getTipoUsuario());
-			ptst.executeUpdate();		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1, vo.getTipoUsuario());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void removerPorNome(VO vo) {
+		String sql = "DELETE * FROM usuario WHERE usuario_nome = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getNome());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
 	public void removerTudo() {
-		conn = getConnection();
 		String sql = "DELETE * FROM usuario";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.executeUpdate();		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
-	public List<UsuarioVO> listar() {
-		conn = getConnection();
+	public ResultSet listar() {
 		String sql = "SELECT * FROM usuario";
 		Statement st;
-		ResultSet rs;
-		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+		ResultSet rs = null;
 		try {
-			st = conn.createStatement();
+			st = getConnection().createStatement();
 			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				UsuarioVO vo = new UsuarioVO();
-				vo.setCpf(rs.getString("pessoa_cpf"));
-				vo.setEndereco(rs.getString("pessoa_endereco"));
-				vo.setNome(rs.getString("pessoa_nome"));
-
-				vo.setLogin(rs.getString("usuario_login"));
-				usuarios.add(vo);
-			}
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return usuarios;
+		return rs;
 	}
 	
-	public List<UsuarioVO> listarPorTipoUsuario(UsuarioVO vo) {
-
-		conn = getConnection();
+	public ResultSet listarTipoUsuario(VO vo) {
 		String sql = "SELECT * FROM usuario WHERE usuario_tipoUsuario = ?";
-		Statement st;
-		ResultSet rs;
-		List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
+		PreparedStatement ptst;
+		ResultSet rs = null;
 		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				vo.setCpf(rs.getString("pessoa_cpf"));
-				vo.setEndereco(rs.getString("pessoa_endereco"));
-				vo.setNome(rs.getString("pessoa_nome"));
-
-				vo.setLogin(rs.getString("usuario_login"));
-				vo.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
-				usuarios.add(vo);
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1,vo.getId())
+			rs = ptst.executeQuery(sql);
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return usuarios;
+		return rs;
 	}
 	
-	public void editarLogin(UsuarioVO vo) {
-		conn = getConnection();
-		String sql = "UPDATE usuario SET usuario_login = ?";
+	public void editar(VO vo) {
+		String sql = "UPDATE usuario SET pessoa_nome = ? where usuario_id = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getLogin());
-			ptst.executeUpdate();		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getNome());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
-	public void editarSenha(UsuarioVO vo) {
-
-		conn = getConnection();
-		String sql = "UPDATE usuario SET usuario_senha = ?";
+	public void editarLogin(VO vo) {
+		String sql = "UPDATE usuario SET usuario_login = ? where usuario_id = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getSenha());
-			ptst.executeUpdate();		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getLogin());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarSenha(VO vo) {
+		String sql = "UPDATE usuario SET usuario_login = ? where usuario_id = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getSenha());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
-	public void editarTipoUsuario(UsuarioVO vo) {
-		conn = getConnection();
-		String sql = "UPDATE usuario SET usuario_tipoUsuario = ?";
+	public void editarTipoUsuario(VO vo) {
+		String sql = "UPDATE usuario SET usuario_tipoUsuario = ? where usuario_id = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setInt(1,vo.getTipoUsuario());
-			ptst.executeUpdate();		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1, vo.getTipoUsuario());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 }
