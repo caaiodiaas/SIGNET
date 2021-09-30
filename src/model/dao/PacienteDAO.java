@@ -8,22 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.vo.ConsultaVO;
+import model.vo.MedicoVO;
 import model.vo.PacienteVO;
 import model.vo.ProntuarioVO;
 
-public class PacienteDAO extends BaseDAO {
+public class PacienteDAO<VO extends PacienteVO> extends BaseDAO<VO>{
 	
-		public void inserir(ConsultaVO vo, ProntuarioVO vo2, PacienteVO vo3) {
-		conn = getConnection();
+		public void inserir(VO vo) {
 		String sql = "INSERT INTO paciente(pessoa_nome,pessoa_endereco,pessoa_cpf,paciente_id) values (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo3.getNome());
-			ptst.setString(2,vo3.getEndereco());
-			ptst.setString(3,vo3.getCpf());
-			ptst.setLong(4,vo3.getId());
-			ptst.execute();		
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ptst.setString(1,vo.getNome());
+			ptst.setString(2,vo.getEndereco());
+			ptst.setString(3,vo.getCpf());
+			ptst.setLong(4,vo.getId());
+
+			int affectedRows = ptst.executeUpdate();			
+			
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhum Id foi retornado.");
+			}
+			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -11,22 +11,35 @@ import model.vo.MedicoVO;
 import model.vo.PacienteVO;
 import model.vo.ProntuarioVO;
 
-public class ProntuarioDAO extends BaseDAO {
+public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 	
-		public void inserir(ProntuarioVO vo,MedicoVO vo2, PacienteVO vo3) {
-		conn = getConnection();
+		public void inserir(VO vo) {
 		String sql = "INSERT INTO Prontuario(prontuario_data,prontuario_observacoes,pessoa_nome,paciente_id, pessoa_nome,medico_id, prontuario_id) values (?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getData());
 			ptst.setString(2,vo.getObservacoes());
-			ptst.setString(3,vo3.getNome());
-			ptst.setLong(4,vo3.getId());
-			ptst.setString(5,vo2.getNome());
-			ptst.setLong(6,vo2.getId());
+			ptst.setString(3,vo.getPaciente().getNome());
+			ptst.setLong(4,vo.getPaciente().getId());
+			ptst.setString(5,vo.getMedico().getNome());
+			ptst.setLong(6,vo.getMedico().getId());
 			ptst.setLong(7,vo.getId());
-			ptst.execute();		
+			
+			int affectedRows = ptst.executeUpdate();			
+			
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhum Id foi retornado.");
+			}
+	
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -7,23 +7,36 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.vo.MedicoVO;
 import model.vo.UsuarioVO;
 
-public class UsuarioDAO extends BaseDAO{
+public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	
-	public void inserir(UsuarioVO vo) {
-		conn = getConnection();
+	public void inserir(VO vo) {
 		String sql = "INSERT INTO usuario(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipoUsuario) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
 			ptst.setString(4,vo.getLogin());
 			ptst.setString(5,vo.getSenha());
 			ptst.setInt(6,vo.getTipoUsuario());
-			ptst.execute();		
+
+			int affectedRows = ptst.executeUpdate();			
+			
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhum Id foi retornado.");
+			}	
+			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

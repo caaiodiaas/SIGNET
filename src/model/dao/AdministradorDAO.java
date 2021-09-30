@@ -8,22 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.vo.AdministradorVO;
+import model.vo.MedicoVO;
 
 
-public class AdministradorDAO extends BaseDAO {
+public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 	
 
-	public void inserir(AdministradorVO vo) {
-		conn = getConnection();
+	public void inserir(VO vo) {
 		String sql = "INSERT INTO admnistrador(pessoa_nome,pessoa_endereco,pessoa_cpf,administrador_id) values (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
 			ptst.setLong(4,vo.getId());
-			ptst.execute();		
+
+			int affectedRows = ptst.executeUpdate();			
+			
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhum Id foi retornado.");
+			}
+			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

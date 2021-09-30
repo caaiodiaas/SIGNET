@@ -10,14 +10,14 @@ import java.util.List;
 import model.vo.ConsultaVO;
 import model.vo.MedicoVO;
 
-public class MedicoDAO extends BaseDAO {
+public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 	
-		public void inserir(MedicoVO vo, ConsultaVO vo2) {
-		conn = getConnection();
+		public void inserir(VO vo) {
 		String sql = "INSERT INTO medico(pessoa_nome,pessoa_endereco,pessoa_cpf, medico_crm, medico_valor_consulta,medico_especializacao) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
@@ -25,13 +25,25 @@ public class MedicoDAO extends BaseDAO {
 			ptst.setFloat(5,vo.getValorConsulta());
 			ptst.setString(6,vo.getEspecializacao());
 			
-			ptst.execute();		
+			int affectedRows = ptst.executeUpdate();			
+			
+			if (affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhum Id foi retornado.");
+			}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}
 	
-		public void removerPorCrm(MedicoVO vo) {
+		public void removerPorCrm(VO vo) {
 			conn = getConnection();
 			String sql = "DELETE * FROM medico WHERE medico_crm = ?";
 			PreparedStatement ptst;
