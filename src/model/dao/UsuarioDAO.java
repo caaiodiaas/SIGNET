@@ -114,7 +114,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		ResultSet rs = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1,vo.getId())
+			ptst.setLong(1,vo.getId());
 			rs = ptst.executeQuery(sql);
 		} catch (SQLException e) {
 			// TODO: handle exception
