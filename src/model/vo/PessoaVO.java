@@ -39,4 +39,5 @@ public abstract class PessoaVO{
 		}else {
 				this.cpf = cpf;
 		}
+	}
 }

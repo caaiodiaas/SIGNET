@@ -5,6 +5,7 @@ public class UsuarioVO extends PessoaVO{
 	private String login;
 	private String senha;
 	private int tipoUsuario;//[0]Administrador || [1]Médico || [2]Paciente
+	private Long id;
 	
 	public String getLogin() {
 		return login;
@@ -41,6 +42,17 @@ public class UsuarioVO extends PessoaVO{
 			
 		}else {
 			this.tipoUsuario = tipoUsuario;
+		}
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		if(id==null || id < 0) {
+			
+		} else {
+			this.id = id;	
 		}
 	}
 }
