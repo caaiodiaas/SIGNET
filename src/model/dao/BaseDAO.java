@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
@@ -37,6 +38,6 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
     public abstract void inserir(VO entity) throws SQLException;
 	public abstract void remover(VO entity) throws SQLException;
 	public abstract void editar(VO entity) throws SQLException;
-	public abstract void listar() throws SQLException;
+	public abstract ResultSet listar() throws SQLException;
     
 }
