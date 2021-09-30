@@ -82,7 +82,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 		}
 		
 		public void editar(VO vo) {
-			String sql = "UPDATE administrador SET pessoa_nome = ? where administrador_id = ?";
+			String sql = "UPDATE administrador SET pessoa_nome = ? WHERE administrador_id = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
@@ -96,7 +96,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 		}
 		
 		public void editarCpf(VO vo) {
-			String sql = "UPDATE administrador SET pessoa_cpf = ? where administrador_id = ?";
+			String sql = "UPDATE administrador SET pessoa_cpf = ? WHERE administrador_id = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
@@ -110,7 +110,7 @@ public class AdministradorDAO<VO extends AdministradorVO> extends BaseDAO<VO>{
 		}
 		
 		public void editarEndereco(VO vo) {
-			String sql = "UPDATE administrador SET pessoa_endereco = ? where administrador_id = ?";
+			String sql = "UPDATE administrador SET pessoa_endereco = ? WHERE administrador_id = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
