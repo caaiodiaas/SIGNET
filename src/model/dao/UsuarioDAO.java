@@ -208,6 +208,34 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		}
 	}
 	
+	public void editarCpf(VO vo) {
+		String sql = "UPDATE usuario SET pessoa_cpf = ? where usuario_id = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getCpf());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarEndereco(VO vo) {
+		String sql = "UPDATE usuario SET pessoa_endereco = ? where usuario_id = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getEndereco());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	public void editarSenha(VO vo) {
 		String sql = "UPDATE usuario SET usuario_login = ? where usuario_id = ?";
 		PreparedStatement ptst;

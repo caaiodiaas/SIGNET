@@ -10,6 +10,7 @@ import model.vo.AdministradorVO;
 
 public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 	BaseInterDAO<AdministradorVO> dao = new AdministradorDAO<>();
+	
 	public void inserir(AdministradorVO vo) throws Exception{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
@@ -24,7 +25,6 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 			throw new Exception(e.getMessage());
 		}
 	}
-	
 	
 	public List<AdministradorVO> buscarPorId(AdministradorVO vo) throws Exception{
 		try {
@@ -57,7 +57,6 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		
 	}
 
-	
 	public List<AdministradorVO> buscarTudo() throws Exception{
 		try {
 		List<AdministradorVO> list = new ArrayList<>();	
@@ -88,8 +87,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		}
 		
 	}
-	
-	
+
 	public void remover(AdministradorVO vo) throws Exception{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
@@ -105,10 +103,9 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		}
 	}
 	
-	public void removerTudo(AdministradorVO vo) throws Exception{
+	public void removerTudo() throws Exception{
 		try {
-			AdministradorDAO<AdministradorVO> dao2 = new AdministradorDAO<>();
-				dao2.removerTudo();
+				dao.removerTudo();
 		}
 		catch(Exception e) {
 			throw new Exception(e.getMessage());
