@@ -103,7 +103,7 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 			}
 		}
 		
-		public ResultSet listar() {
+		public ResultSet buscarTudo() {
 			String sql = "SELECT * FROM prontuario";
 			Statement st;
 			ResultSet rs = null;
@@ -117,7 +117,22 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorData(VO vo) {
+		public ResultSet buscarPorId(VO vo) {
+			String sql = "SELECT * FROM prontuario WHERE prontuario_id = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorData(VO vo) {
 			String sql = "SELECT * FROM prontuario WHERE prontuario_data = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
@@ -132,7 +147,7 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorPaciente(VO vo) {
+		public ResultSet buscarPorPaciente(VO vo) {
 			String sql = "SELECT * FROM prontuario WHERE paciente_id = ?";
 			PreparedStatement ptst;
 	        ResultSet rs = null;
@@ -147,7 +162,7 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorMedico(VO vo) {
+		public ResultSet buscarPorMedico(VO vo) {
 			String sql = "SELECT * FROM prontuario WHERE medico_id = ?";
 			PreparedStatement ptst;
 	        ResultSet rs = null;

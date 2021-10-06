@@ -117,7 +117,7 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 			}
 		}
 				
-		public ResultSet listar() {
+		public ResultSet buscarTudo() {
 			String sql = "SELECT * FROM Medico";
 			Statement st;
 			ResultSet rs = null;
@@ -131,7 +131,67 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 			return rs;
 		}
 		
-		public ResultSet listarPorEspecializacao(VO vo) {
+		public ResultSet buscarPorId(VO vo) {
+			String sql = "SELECT * FROM medico WHERE medico_id = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorNome(VO vo) {
+			String sql = "SELECT * FROM medico WHERE pessoa_nome = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1,vo.getNome());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorCpf(VO vo) {
+			String sql = "SELECT * FROM medico WHERE pessoa_cpf = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1,vo.getCpf());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorCrm(VO vo) {
+			String sql = "SELECT * FROM medico WHERE medico_crm = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1,vo.getCrm());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorEspecializacao(VO vo) {
 			String sql = "SELECT * FROM medico WHERE medico_especializacao = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
@@ -146,7 +206,7 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 			return rs;
 		}
 				
-		public ResultSet listarPorValorConsulta(VO vo) {
+		public ResultSet buscarPorValorConsulta(VO vo) {
 			String sql = "SELECT * FROM medico WHERE medico_valor_consulta = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
