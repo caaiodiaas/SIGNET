@@ -118,7 +118,7 @@ public class ConsultaDAO<VO extends ConsultaVO> extends BaseDAO<VO>{
 			}
 		}
 		
-		public ResultSet listar() {
+		public ResultSet buscarTudo() {
 			String sql = "SELECT * FROM consulta";
 			Statement st;
 			ResultSet rs = null;
@@ -132,7 +132,22 @@ public class ConsultaDAO<VO extends ConsultaVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorData(VO vo) {
+		public ResultSet buscarPorId(VO vo) {
+			String sql = "SELECT * FROM consulta WHERE consulta_id = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorData(VO vo) {
 			String sql = "SELECT * FROM consulta WHERE consulta_data = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
@@ -147,7 +162,7 @@ public class ConsultaDAO<VO extends ConsultaVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorPaciente(VO vo) {
+		public ResultSet buscarPorPaciente(VO vo) {
 			String sql = "SELECT * FROM consulta WHERE paciente_id = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
@@ -162,7 +177,7 @@ public class ConsultaDAO<VO extends ConsultaVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorMedico(VO vo) {
+		public ResultSet buscarPorMedico(VO vo) {
 			String sql = "SELECT * FROM consulta WHERE medico_id = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
@@ -177,7 +192,7 @@ public class ConsultaDAO<VO extends ConsultaVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public ResultSet listarPorStatus(VO vo) {
+		public ResultSet buscarPorStatus(VO vo) {
 			String sql = "SELECT * FROM consulta WHERE consulta_status = ?";
 			 PreparedStatement ptst;
 		        ResultSet rs = null;
@@ -191,8 +206,6 @@ public class ConsultaDAO<VO extends ConsultaVO> extends BaseDAO<VO>{
 		        }
 			return rs;
 		}
-		
-		
 		
 		public void editarData(VO vo) {
 			String sql = "UPDATE consulta SET consulta_data = ? WHERE consulta_id = ?";

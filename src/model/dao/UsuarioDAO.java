@@ -91,7 +91,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		}
 	}
 	
-	public ResultSet listar() {
+	public ResultSet buscarTudo() {
 		String sql = "SELECT * FROM usuario";
 		Statement st;
 		ResultSet rs = null;
@@ -105,13 +105,73 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		return rs;
 	}
 	
-	public ResultSet listarTipoUsuario(VO vo) {
+	public ResultSet buscarPorTipoUsuario(VO vo) {
 		String sql = "SELECT * FROM usuario WHERE usuario_tipoUsuario = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		try {
 			ptst = getConnection().prepareStatement(sql);
+			ptst.setInt(1,vo.getTipoUsuario());
+			rs = ptst.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorNome(VO vo) {
+		String sql = "SELECT * FROM usuario WHERE pessoa_nome = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1,vo.getNome());
+			rs = ptst.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorId(VO vo) {
+		String sql = "SELECT * FROM usuario WHERE usuario_id = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1,vo.getId());
+			rs = ptst.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorCpf(VO vo) {
+		String sql = "SELECT * FROM usuario WHERE pessoa_cpf = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1,vo.getCpf());
+			rs = ptst.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet buscarPorLogin(VO vo) {
+		String sql = "SELECT * FROM usuario WHERE usuario_login = ?";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1,vo.getLogin());
 			rs = ptst.executeQuery(sql);
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -140,6 +200,34 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1, vo.getLogin());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarCpf(VO vo) {
+		String sql = "UPDATE usuario SET pessoa_cpf = ? where usuario_id = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getCpf());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarEndereco(VO vo) {
+		String sql = "UPDATE usuario SET pessoa_endereco = ? where usuario_id = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getEndereco());
 			ptst.setLong(2, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {

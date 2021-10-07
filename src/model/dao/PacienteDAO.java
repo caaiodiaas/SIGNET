@@ -89,13 +89,58 @@ public class PacienteDAO<VO extends PacienteVO> extends BaseDAO<VO>{
 			}
 		}
 		
-		public ResultSet listar() {
+		public ResultSet buscarTudo() {
 			String sql = "SELECT * FROM paciente";
 			Statement st;
 			ResultSet rs = null;
 			try {
 				st = getConnection().createStatement();
 				rs = st.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorId(VO vo) {
+			String sql = "SELECT * FROM paciente WHERE paciente_id = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setLong(1,vo.getId());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorNome(VO vo) {
+			String sql = "SELECT * FROM paciente WHERE pessoa_nome = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1,vo.getNome());
+				rs = ptst.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return rs;
+		}
+		
+		public ResultSet buscarPorCpf(VO vo) {
+			String sql = "SELECT * FROM paciente WHERE pessoa_cpf = ?";
+			PreparedStatement ptst;
+			ResultSet rs = null;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setString(1,vo.getCpf());
+				rs = ptst.executeQuery(sql);
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
