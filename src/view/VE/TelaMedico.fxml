@@ -24,13 +24,20 @@
          </image>
       </ImageView>
       <Button fx:id="botaoConsultasMedico" layoutX="20.0" layoutY="183.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" visible="false" />
-      <Button fx:id="botaoEditarMedico" layoutX="392.0" layoutY="188.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" visible="false" />
+      <Button fx:id="botaoEditarMedico" layoutX="377.0" layoutY="188.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" visible="false" />
       <Button fx:id="botaoVoltar" layoutX="6.0" layoutY="21.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" visible="false" />
-      <TextField fx:id="textoNome" editable="false" layoutX="49.0" layoutY="46.0" prefHeight="25.0" prefWidth="344.0" />
-      <TextField fx:id="textoCrm" editable="false" layoutX="188.0" layoutY="77.0" prefHeight="25.0" prefWidth="88.0" />
-      <TextField fx:id="textoCpf" editable="false" layoutX="49.0" layoutY="77.0" prefHeight="25.0" prefWidth="105.0" />
-      <TextField fx:id="textoEndereco" editable="false" layoutX="63.0" layoutY="102.0" prefHeight="25.0" prefWidth="330.0" />
-      <TextField fx:id="textoEspecializacao" editable="false" layoutX="95.0" layoutY="138.0" prefHeight="25.0" prefWidth="142.0" />
-      <TextField fx:id="textoValorConsulta" editable="false" layoutX="329.0" layoutY="138.0" prefHeight="25.0" prefWidth="67.0" />
+      <Button fx:id="botaoApagarMedico" layoutX="454.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" visible="false" />
+      <Text fill="#346c26" layoutX="178.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil do Médico" wrappingWidth="183.9375">
+         <font>
+            <Font name="Constantia" size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textoNomeMedico" editable="false" layoutX="49.0" layoutY="46.0" prefHeight="25.0" prefWidth="344.0" />
+      <TextField fx:id="textoCrmMedico" editable="false" layoutX="188.0" layoutY="77.0" prefHeight="25.0" prefWidth="88.0" />
+      <TextField fx:id="textoCpfMedico" editable="false" layoutX="49.0" layoutY="77.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="textoEnderecoMedico" editable="false" layoutX="66.0" layoutY="104.0" prefHeight="19.0" prefWidth="327.0" />
+      <TextField fx:id="textoEspecializacaoMedico" editable="false" layoutX="95.0" layoutY="138.0" prefHeight="25.0" prefWidth="142.0" />
+      <TextField fx:id="textoValorConsultaMedico" editable="false" layoutX="329.0" layoutY="138.0" prefHeight="25.0" prefWidth="67.0" />
+      <TextField fx:id="textoIdMedico" editable="false" layoutX="356.0" layoutY="17.0" opacity="0.6" prefHeight="25.0" prefWidth="128.0" />
    </children>
 </Pane>
