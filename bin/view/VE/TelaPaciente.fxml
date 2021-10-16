@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+
+<Pane prefHeight="301.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="/SIGNET/src/controller/frontController.java">
+   <children>
+      <Group>
+         <children>
+            <ImageView fitHeight="122.0" fitWidth="506.0" layoutY="-108.0">
+               <image>
+                  <Image url="@LogoTopo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <ImageView fitHeight="224.0" fitWidth="558.0" layoutX="6.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@TelaPaciente.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="botaoConsultasPaciente" layoutX="168.0" layoutY="186.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" visible="false" />
+      <Button fx:id="botaoEditarPaciente" layoutX="380.0" layoutY="188.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" visible="false" />
+      <Button fx:id="botaoVoltar" layoutX="6.0" layoutY="21.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" visible="false" />
+      <TextField fx:id="textoNome" editable="false" layoutX="57.0" layoutY="52.0" prefHeight="25.0" prefWidth="212.0" />
+      <TextField fx:id="textoEndereco" editable="false" layoutX="79.0" layoutY="86.0" prefHeight="25.0" prefWidth="319.0" />
+      <TextField fx:id="textoCpf" editable="false" layoutX="294.0" layoutY="52.0" prefHeight="25.0" prefWidth="118.0" />
+      <TextArea fx:id="textoObservacoes" editable="false" layoutX="39.0" layoutY="128.0" prefHeight="50.0" prefWidth="394.0" />
+   </children>
+</Pane>
