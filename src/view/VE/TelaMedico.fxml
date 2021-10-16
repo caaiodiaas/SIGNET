@@ -39,5 +39,6 @@
       <TextField fx:id="textoEspecializacaoMedico" editable="false" layoutX="95.0" layoutY="138.0" prefHeight="25.0" prefWidth="142.0" />
       <TextField fx:id="textoValorConsultaMedico" editable="false" layoutX="329.0" layoutY="138.0" prefHeight="25.0" prefWidth="67.0" />
       <TextField fx:id="textoIdMedico" editable="false" layoutX="356.0" layoutY="17.0" opacity="0.6" prefHeight="25.0" prefWidth="128.0" />
+      <Text fill="#da0000" layoutX="295.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="201.501953125" />
    </children>
 </Pane>

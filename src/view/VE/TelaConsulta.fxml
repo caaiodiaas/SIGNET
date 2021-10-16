@@ -37,5 +37,6 @@
       <TextField fx:id="textoHorarioConsulta" editable="false" layoutX="75.0" layoutY="143.0" prefHeight="25.0" prefWidth="91.0" />
       <TextField fx:id="textoStatusConsulta" editable="false" layoutX="74.0" layoutY="170.0" prefHeight="25.0" prefWidth="91.0" />
       <TextField fx:id="textoIdConsulta" editable="false" layoutX="307.0" layoutY="19.0" opacity="0.6" prefHeight="25.0" prefWidth="128.0" />
+      <Text fill="#da0000" layoutX="295.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="201.501953125" />
    </children>
 </Pane>

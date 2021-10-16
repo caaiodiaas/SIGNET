@@ -36,5 +36,6 @@
       <Button fx:id="botaoEditarProntuario" layoutX="381.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" visible="false" />
       <Button fx:id="botaoApagarProntuario" layoutX="462.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="18.0" visible="false" />
       <TextField fx:id="textoIdProntuario" editable="false" layoutX="317.0" layoutY="17.0" opacity="0.6" prefHeight="25.0" prefWidth="128.0" />
+      <Text fill="#da0000" layoutX="290.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="201.501953125" />
    </children>
 </Pane>
