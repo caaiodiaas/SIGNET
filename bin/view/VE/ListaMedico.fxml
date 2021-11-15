@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
@@ -56,6 +57,7 @@
             <TextArea fx:id="textoCrmMedico5" editable="false" layoutX="329.0" layoutY="222.0" prefHeight="23.0" prefWidth="82.0" />
             <TextArea fx:id="textoEspecializacaoMedico5" editable="false" layoutX="210.0" layoutY="221.0" prefHeight="23.0" prefWidth="118.0" />
             <TextField fx:id="botaoBuscarMedico" layoutX="48.0" layoutY="30.0" prefHeight="8.0" prefWidth="315.0" />
+            <Text fill="#da0000" layoutX="307.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="201.501953125" />
          </children>
       </Group>
    </children>

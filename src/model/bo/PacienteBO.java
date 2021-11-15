@@ -15,7 +15,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()) {
-				throw new Exception("Impossível cadastrar, paciente já existente.");
+				throw new Exception("Impossï¿½vel cadastrar, paciente jï¿½ existente.");
 			}
 			else {
 				dao.inserir(vo);
@@ -26,29 +26,28 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		}
 	}
 	
-	public List<PacienteVO> buscarPorId(PacienteVO vo) throws Exception{
+	public PacienteVO buscarPorId(PacienteVO vo) throws Exception{
 		try {
-		List<PacienteVO> list = new ArrayList<>();	
+		PacienteVO vo2 = new PacienteVO();
 		ResultSet rs = dao.buscarPorId(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, paciente não encontrado.");
+			throw new Exception("Erro ao listar, paciente nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
-			PacienteVO vo2 = new PacienteVO();
+
 			vo2.setId(rs.getLong("paciente_id"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
 			
-			list.add(vo2);
 			
 			System.out.println("Id: " + vo2.getId());
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -63,7 +62,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		PacienteDAO<PacienteVO> dao2 = new PacienteDAO<>();
 		ResultSet rs = dao2.buscarPorCpf(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, paciente não encontrado.");
+			throw new Exception("Erro ao listar, paciente nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -94,7 +93,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		PacienteDAO<PacienteVO> dao2 = new PacienteDAO<>();
 		ResultSet rs = dao2.buscarPorNome(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, paciente não encontrado.");
+			throw new Exception("Erro ao listar, paciente nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -124,7 +123,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		List<PacienteVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, pacientes não encontrados.");
+			throw new Exception("Erro ao listar, pacientes nï¿½o encontrados.");
 		}
 		else {
 		while(rs.next()) {
@@ -154,7 +153,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível remover, paciente não encontrado.");
+				throw new Exception("Impossï¿½vel remover, paciente nï¿½o encontrado.");
 			}
 			else {
 				dao.remover(vo);
@@ -178,7 +177,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, paciente não encontrado.");
+				throw new Exception("Impossï¿½vel editar, paciente nï¿½o encontrado.");
 			}
 			else {
 				dao.editar(vo);
@@ -194,7 +193,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, paciente não encontrado.");
+				throw new Exception("Impossï¿½vel editar, paciente nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarCpf(vo);;
@@ -210,7 +209,7 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, paciente não encontrado.");
+				throw new Exception("Impossï¿½vel editar, paciente nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarEndereco(vo);;

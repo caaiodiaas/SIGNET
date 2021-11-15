@@ -14,7 +14,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()) {
-				throw new Exception("Impossível cadastrar");
+				throw new Exception("Impossï¿½vel cadastrar");
 			}
 			else {
 				dao.inserir(vo);
@@ -25,16 +25,16 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		}
 	}
 	
-	public List<ProntuarioVO> buscarPorId(ProntuarioVO vo) throws Exception{
+	public ProntuarioVO buscarPorId(ProntuarioVO vo) throws Exception{
 		try {
-		List<ProntuarioVO> list = new ArrayList<>();	
+		ProntuarioVO vo2 = new ProntuarioVO();
 		ResultSet rs = dao.buscarPorId(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Prontuario não encontrado.");
+			throw new Exception("Erro ao listar, Prontuario nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
-			ProntuarioVO vo2 = new ProntuarioVO();
+
 
 			vo2.setId(rs.getLong("prontuario_id"));
 			vo2.setData(rs.getString("prontuario_data"));
@@ -45,7 +45,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 			vo2.getMedico().setNome(rs.getString("pessoa_nome"));
 			vo2.getMedico().setId(rs.getLong("medico_id"));
 			
-			list.add(vo2);
+
 			
 			System.out.println("ID Prontuario: " + vo2.getId());
 			System.out.println("Data: " + vo2.getData());
@@ -55,7 +55,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 			System.out.println("Medico: " + vo2.getMedico().getNome());
 			System.out.println("ID Medico: " + vo2.getMedico().getId());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -70,7 +70,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		ProntuarioDAO<ProntuarioVO> dao2 = new ProntuarioDAO<>();
 		ResultSet rs = dao2.buscarPorData(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Prontuario não encontrado.");
+			throw new Exception("Erro ao listar, Prontuario nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -109,7 +109,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		ProntuarioDAO<ProntuarioVO> dao2 = new ProntuarioDAO<>();
 		ResultSet rs = dao2.buscarPorPaciente(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Prontuario não encontrado.");
+			throw new Exception("Erro ao listar, Prontuario nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -148,7 +148,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		ProntuarioDAO<ProntuarioVO> dao2 = new ProntuarioDAO<>();
 		ResultSet rs = dao2.buscarPorMedico(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Prontuario não encontrado.");
+			throw new Exception("Erro ao listar, Prontuario nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -186,7 +186,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		List<ProntuarioVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Prontuarios não encontrados.");
+			throw new Exception("Erro ao listar, Prontuarios nï¿½o encontrados.");
 		}
 		else {
 		while(rs.next()) {
@@ -224,7 +224,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível remover, Prontuario não encontrado.");
+				throw new Exception("Impossï¿½vel remover, Prontuario nï¿½o encontrado.");
 			}
 			else {
 				dao.remover(vo);
@@ -248,7 +248,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, Prontuario não encontrado.");
+				throw new Exception("Impossï¿½vel editar, Prontuario nï¿½o encontrado.");
 			}
 			else {
 				dao.editar(vo);
@@ -265,7 +265,7 @@ public class ProntuarioBO implements BaseInterBO<ProntuarioVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, Prontuario não encontrado.");
+				throw new Exception("Impossï¿½vel editar, Prontuario nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarData(vo);;

@@ -15,7 +15,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()) {
-				throw new Exception("Impossível cadastrar");
+				throw new Exception("Impossï¿½vel cadastrar");
 			}
 			else {
 				dao.inserir(vo);
@@ -26,29 +26,27 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		}
 	}
 	
-	public List<AdministradorVO> buscarPorId(AdministradorVO vo) throws Exception{
+	public AdministradorVO buscarPorId(AdministradorVO vo) throws Exception{
 		try {
-		List<AdministradorVO> list = new ArrayList<>();	
+		AdministradorVO vo2 = new AdministradorVO();
 		ResultSet rs = dao.buscarPorId(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, ID não encontrado");
+			throw new Exception("Erro ao listar, ID nï¿½o encontrado");
 		}
 		else {
 		while(rs.next()) {
-			AdministradorVO vo2 = new AdministradorVO();
+
 			vo2.setId(rs.getLong("administrador_id"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
-			
-			list.add(vo2);
 			
 			System.out.println("Id: " + vo2.getId());
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -62,7 +60,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		List<AdministradorVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, ID não encontrado");
+			throw new Exception("Erro ao listar, ID nï¿½o encontrado");
 		}
 		else {
 		while(rs.next()) {
@@ -92,7 +90,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("ID não encontrado, impossível remover");
+				throw new Exception("ID nï¿½o encontrado, impossï¿½vel remover");
 			}
 			else {
 				dao.remover(vo);
@@ -116,7 +114,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("ID não encontrado, impossível editar");
+				throw new Exception("ID nï¿½o encontrado, impossï¿½vel editar");
 			}
 			else {
 				dao.editar(vo);
@@ -132,7 +130,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("ID não encontrado, impossível editar");
+				throw new Exception("ID nï¿½o encontrado, impossï¿½vel editar");
 			}
 			else {
 				dao2.editarCpf(vo);;
@@ -148,7 +146,7 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("ID não encontrado, impossível editar");
+				throw new Exception("ID nï¿½o encontrado, impossï¿½vel editar");
 			}
 			else {
 				dao2.editarEndereco(vo);;

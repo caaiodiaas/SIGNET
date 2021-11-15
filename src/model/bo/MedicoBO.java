@@ -15,7 +15,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()) {
-				throw new Exception("Impossível cadastrar");
+				throw new Exception("Impossï¿½vel cadastrar");
 			}
 			else {
 				dao.inserir(vo);
@@ -26,16 +26,16 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		}
 	}
 	
-	public List<MedicoVO> buscarPorId(MedicoVO vo) throws Exception{
+	public MedicoVO buscarPorId(MedicoVO vo) throws Exception{
 		try {
-		List<MedicoVO> list = new ArrayList<>();	
+		MedicoVO vo2 = new MedicoVO();
 		ResultSet rs = dao.buscarPorId(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, médico não encontrado.");
+			throw new Exception("Erro ao listar, mï¿½dico nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
-			MedicoVO vo2 = new MedicoVO();
+
 			vo2.setId(rs.getLong("medico_id"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
@@ -44,17 +44,15 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 			vo2.setValorConsulta(rs.getFloat("medico_valorConsulta"));
 			vo2.setEspecializacao(rs.getString("medico_especializacao"));
 			
-			list.add(vo2);
-			
 			System.out.println("Id: " + vo2.getId());
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 			System.out.println("Crm: " + vo2.getCrm());
-			System.out.println("Especialização: " + vo2.getEspecializacao());
+			System.out.println("Especializaï¿½ï¿½o: " + vo2.getEspecializacao());
 			System.out.println("Valor da consulta: R$" + vo2.getValorConsulta());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -69,7 +67,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		MedicoDAO<MedicoVO> dao2 = new MedicoDAO<>();
 		ResultSet rs = dao2.buscarPorCpf(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, médico não encontrado.");
+			throw new Exception("Erro ao listar, mï¿½dico nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -89,7 +87,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 			System.out.println("Crm: " + vo2.getCrm());
-			System.out.println("Especialização: " + vo2.getEspecializacao());
+			System.out.println("Especializaï¿½ï¿½o: " + vo2.getEspecializacao());
 			System.out.println("Valor da consulta: R$" + vo2.getValorConsulta());
 		}
 			return list;
@@ -106,7 +104,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		MedicoDAO<MedicoVO> dao2 = new MedicoDAO<>();
 		ResultSet rs = dao2.buscarPorNome(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, médico não encontrado.");
+			throw new Exception("Erro ao listar, mï¿½dico nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -126,7 +124,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 			System.out.println("Crm: " + vo2.getCrm());
-			System.out.println("Especialização: " + vo2.getEspecializacao());
+			System.out.println("Especializaï¿½ï¿½o: " + vo2.getEspecializacao());
 			System.out.println("Valor da consulta: R$" + vo2.getValorConsulta());
 		}
 			return list;
@@ -143,7 +141,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		MedicoDAO<MedicoVO> dao2 = new MedicoDAO<>();
 		ResultSet rs = dao2.buscarPorCrm(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, médico não encontrado.");
+			throw new Exception("Erro ao listar, mï¿½dico nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -163,7 +161,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 			System.out.println("Crm: " + vo2.getCrm());
-			System.out.println("Especialização: " + vo2.getEspecializacao());
+			System.out.println("Especializaï¿½ï¿½o: " + vo2.getEspecializacao());
 			System.out.println("Valor da consulta: R$" + vo2.getValorConsulta());
 		}
 			return list;
@@ -180,7 +178,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		MedicoDAO<MedicoVO> dao2 = new MedicoDAO<>();
 		ResultSet rs = dao2.buscarPorEspecializacao(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, médicos não encontrados.");
+			throw new Exception("Erro ao listar, mï¿½dicos nï¿½o encontrados.");
 		}
 		else {
 		while(rs.next()) {
@@ -200,7 +198,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 			System.out.println("Crm: " + vo2.getCrm());
-			System.out.println("Especialização: " + vo2.getEspecializacao());
+			System.out.println("Especializaï¿½ï¿½o: " + vo2.getEspecializacao());
 			System.out.println("Valor da consulta: R$" + vo2.getValorConsulta());
 		}
 			return list;
@@ -216,7 +214,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		List<MedicoVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, médicos não encontrados.");
+			throw new Exception("Erro ao listar, mï¿½dicos nï¿½o encontrados.");
 		}
 		else {
 		while(rs.next()) {
@@ -236,7 +234,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 			System.out.println("Crm: " + vo2.getCrm());
-			System.out.println("Especialização: " + vo2.getEspecializacao());
+			System.out.println("Especializaï¿½ï¿½o: " + vo2.getEspecializacao());
 			System.out.println("Valor da consulta: R$" + vo2.getValorConsulta());
 		}
 			return list;
@@ -252,7 +250,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("ID não encontrado, impossível remover");
+				throw new Exception("ID nï¿½o encontrado, impossï¿½vel remover");
 			}
 			else {
 				dao.remover(vo);
@@ -276,7 +274,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, médico não encontrado.");
+				throw new Exception("Impossï¿½vel editar, mï¿½dico nï¿½o encontrado.");
 			}
 			else {
 				dao.editar(vo);
@@ -292,7 +290,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, médico não encontrado.");
+				throw new Exception("Impossï¿½vel editar, mï¿½dico nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarCpf(vo);;
@@ -308,7 +306,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, médico não encontrado.");
+				throw new Exception("Impossï¿½vel editar, mï¿½dico nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarEndereco(vo);;
@@ -324,7 +322,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, médico não encontrado.");
+				throw new Exception("Impossï¿½vel editar, mï¿½dico nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarCrm(vo);;
@@ -340,7 +338,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, médico não encontrado.");
+				throw new Exception("Impossï¿½vel editar, mï¿½dico nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarEspecializacao(vo);;
@@ -356,7 +354,7 @@ public class MedicoBO implements BaseInterBO<MedicoVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, médico não encontrado.");
+				throw new Exception("Impossï¿½vel editar, mï¿½dico nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarValorConsulta(vo);;

@@ -14,7 +14,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()) {
-				throw new Exception("Impossível cadastrar");
+				throw new Exception("Impossï¿½vel cadastrar");
 			}
 			else {
 				dao.inserir(vo);
@@ -25,16 +25,16 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		}
 	}
 		
-	public List<ConsultaVO> buscarPorId(ConsultaVO vo) throws Exception{
+	public ConsultaVO buscarPorId(ConsultaVO vo) throws Exception{
 		try {
-		List<ConsultaVO> list = new ArrayList<>();	
+		ConsultaVO vo2 = new ConsultaVO();
 		ResultSet rs = dao.buscarPorId(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Consulta não encontrado.");
+			throw new Exception("Erro ao listar, Consulta nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
-			ConsultaVO vo2 = new ConsultaVO();
+
 			
 			vo2.setId(rs.getLong("consulta_id"));
 			vo2.setData(rs.getString("consulta_data"));
@@ -46,8 +46,6 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 			vo2.getMedico().setNome(rs.getString("pessoa_nome"));
 			vo2.getMedico().setId(rs.getLong("medico_id"));
 			
-			list.add(vo2);
-			
 			System.out.println("ID Consulta: " + vo2.getId());
 			System.out.println("Data: " + vo2.getData());
 			System.out.println("Horario: " + vo2.getHorario());
@@ -57,7 +55,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 			System.out.println("Medico: " + vo2.getMedico().getNome());
 			System.out.println("ID Medico: " + vo2.getMedico().getId());		
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -72,7 +70,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		ConsultaDAO<ConsultaVO> dao2 = new ConsultaDAO<>();
 		ResultSet rs = dao2.buscarPorStatus(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Consulta não encontrado.");
+			throw new Exception("Erro ao listar, Consulta nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -113,7 +111,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		ConsultaDAO<ConsultaVO> dao2 = new ConsultaDAO<>();
 		ResultSet rs = dao2.buscarPorData(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Consulta não encontrado.");
+			throw new Exception("Erro ao listar, Consulta nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -154,7 +152,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		ConsultaDAO<ConsultaVO> dao2 = new ConsultaDAO<>();
 		ResultSet rs = dao2.buscarPorPaciente(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Consulta não encontrado.");
+			throw new Exception("Erro ao listar, Consulta nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -195,7 +193,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		ConsultaDAO<ConsultaVO> dao2 = new ConsultaDAO<>();
 		ResultSet rs = dao2.buscarPorMedico(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Consulta não encontrado.");
+			throw new Exception("Erro ao listar, Consulta nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -235,7 +233,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		List<ConsultaVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Consultas não encontrados.");
+			throw new Exception("Erro ao listar, Consultas nï¿½o encontrados.");
 		}
 		else {
 		while(rs.next()) {
@@ -275,7 +273,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível remover, Consulta não encontrado.");
+				throw new Exception("Impossï¿½vel remover, Consulta nï¿½o encontrado.");
 			}
 			else {
 				dao.remover(vo);
@@ -299,7 +297,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, Consulta não encontrada.");
+				throw new Exception("Impossï¿½vel editar, Consulta nï¿½o encontrada.");
 			}
 			else {
 				dao.editar(vo);
@@ -315,7 +313,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, Consulta não encontrada.");
+				throw new Exception("Impossï¿½vel editar, Consulta nï¿½o encontrada.");
 			}
 			else {
 				dao2.editarHorario(vo);;
@@ -331,7 +329,7 @@ public class ConsultaBO implements BaseInterBO<ConsultaVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, Consulta não encontrada.");
+				throw new Exception("Impossï¿½vel editar, Consulta nï¿½o encontrada.");
 			}
 			else {
 				dao2.editarData(vo);;

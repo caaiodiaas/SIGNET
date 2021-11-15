@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+
+<Pane prefHeight="301.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="/SIGNET/src/controller/frontController.java">
+   <children>
+      <Group>
+         <children>
+            <ImageView fitHeight="122.0" fitWidth="506.0" layoutY="-108.0">
+               <image>
+                  <Image url="@LogoTopo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <ImageView fitHeight="224.0" fitWidth="493.0" layoutX="6.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@TelaRelatorio.png" />
+         </image>
+      </ImageView>
+      <Text fill="#346c26" layoutX="164.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerar Relatório" wrappingWidth="222.0">
+         <font>
+            <Font name="Constantia" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="botaoGerarRelatorio" layoutX="380.0" layoutY="195.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="111.0" visible="false" />
+      <Button fx:id="botaoVoltar" layoutX="6.0" layoutY="21.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" visible="false" />
+      <TextField fx:id="textoMedicoRelatorio" layoutX="90.0" layoutY="64.0" prefHeight="25.0" prefWidth="291.0" />
+      <TextField fx:id="textoDataInicio" layoutX="89.0" layoutY="96.0" prefHeight="25.0" prefWidth="92.0" />
+      <TextField fx:id="textoDataFim" layoutX="89.0" layoutY="128.0" prefHeight="25.0" prefWidth="92.0" />
+   </children>
+</Pane>

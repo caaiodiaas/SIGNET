@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
@@ -52,5 +53,6 @@
       <Button fx:id="botaoAnteriorPaciente" layoutX="240.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" visible="false" />
       <Button fx:id="botaoProximoPaciente" layoutX="263.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="2.0" visible="false" />
       <TextField fx:id="textoBuscarPaciente" layoutX="48.0" layoutY="36.0" prefHeight="25.0" prefWidth="314.0" />
+      <Text fill="#da0000" layoutX="301.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="217.501953125" />
    </children>
 </Pane>

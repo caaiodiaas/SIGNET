@@ -1,11 +1,5 @@
 package model.dao;
 
-import java.util.Iterator;
-import java.util.List;
-
-import model.vo.MedicoVO;
-import model.vo.PessoaVO;
-
 public class TesteDAO {
     public static void main(String[] args){
         //BaseDAO dao = new BaseDAO();
