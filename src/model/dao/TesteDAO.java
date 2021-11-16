@@ -1,11 +1,5 @@
 package model.dao;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-import model.bo.PacienteBO;
-import model.vo.PacienteVO;
 
 
 public class TesteDAO {
@@ -43,7 +37,7 @@ public class TesteDAO {
         for (MedicoVO vo3 : medicos) {
 			System.out.println("Nome: " + vo3.getDados().getNome());
 			System.out.println("Cpf: " + vo3.getDados().getCpf());
-			System.out.println("Endereço: " + vo3.getDados().getEndereco());
+			System.out.println("Endereï¿½o: " + vo3.getDados().getEndereco());
 			System.out.println("Crm: " + vo3.getCrm());
 			System.out.println("Valor Consulta: R$" + vo3.getValorConsulta());
 			System.out.println("");

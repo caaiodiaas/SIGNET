@@ -1,7 +1,6 @@
 package model.bo;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,7 +168,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
 		ResultSet rs = dao2.buscarPorLogin(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Usuario não encontrado.");
+			throw new Exception("Erro ao listar, Usuario nï¿½o encontrado.");
 		}
 		else {
 			vo2.setLogin(rs.getString("usuario_login"));
