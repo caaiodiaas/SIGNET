@@ -8,7 +8,6 @@ public class ConsultaVO {
 	private Long id;
 	private PacienteVO paciente;
 	private MedicoVO medico;
-
 	
 	
 	public Long getId() {

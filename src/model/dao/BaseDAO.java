@@ -19,6 +19,7 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
                 //TODO: handle exception
                 e.printStackTrace();
             }  
+            
             return conn;
         }
         else return conn;

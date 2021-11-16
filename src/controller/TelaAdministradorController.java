@@ -16,13 +16,13 @@ public class TelaAdministradorController extends Telas{
     }
 
     public void abrirRelatorios(){
-
+    
     };
 
     public void abrirConsultas(){
     	try {
             // Abrir TelaLogin
-            telaListaConsulta();
+    		telaListaConsulta();
 
         } catch (Exception e) {
             //TODO: handle exception
@@ -30,11 +30,23 @@ public class TelaAdministradorController extends Telas{
     };
 
     public void abrirMedicos(){
+    	try {
+            // Abrir TelaLogin
+            telaListaMedico();
 
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     };
 
     public void abrirPacientes(){
+    	try {
+            // Abrir TelaLogin
+            telaListaPaciente();
 
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     };
 
 }
