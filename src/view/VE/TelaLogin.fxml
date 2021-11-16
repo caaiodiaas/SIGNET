@@ -6,25 +6,25 @@
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
-<Pane prefHeight="301.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
+<Pane maxHeight="796.0" maxWidth="1016.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
    <children>
-      <Group>
+      <ImageView fitHeight="122.0" fitWidth="506.0" layoutX="2.0">
+         <image>
+            <Image url="@LogoTopo.png" />
+         </image>
+      </ImageView>
+      <Group layoutX="35.0" layoutY="161.0">
          <children>
-            <ImageView fitHeight="237.0" fitWidth="441.0" layoutX="33.0" layoutY="32.0">
+            <ImageView fitHeight="237.0" fitWidth="441.0">
                <image> 
                   <Image url="@TelaLogin.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="122.0" fitWidth="506.0" layoutY="-108.0">
-               <image>
-                  <Image url="@LogoTopo.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="botaoLogin" layoutX="210.0" layoutY="187.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="41.0" prefWidth="88.0" text="Login" textAlignment="CENTER" />
-            <TextField fx:id="login" layoutX="158.0" layoutY="106.0" prefHeight="25.0" prefWidth="240.0" />
-            <Button layoutX="336.0" layoutY="187.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="100.0" text="Esqueci a senha" />
-            <Label fx:id="erroAut" layoutX="170.0" layoutY="70.0" prefHeight="36.0" prefWidth="169.0" text="Usuário ou Senha Inválido(os)." textFill="RED" visible="false" />
-            <PasswordField fx:id="senha" layoutX="158.0" layoutY="151.0" prefHeight="25.0" prefWidth="240.0" />
+            <Button layoutX="307.0" layoutY="157.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="100.0" text="Esqueci a senha" />
+            <TextField fx:id="login" layoutX="117.0" layoutY="74.0" prefHeight="25.0" prefWidth="240.0" />
+            <PasswordField fx:id="senha" layoutX="117.0" layoutY="119.0" prefHeight="25.0" prefWidth="240.0" />
+            <Button fx:id="botaoLogin" layoutX="177.0" layoutY="169.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="41.0" prefWidth="88.0" text="Login" textAlignment="CENTER" />
+            <Label fx:id="erroAut" layoutX="117.0" layoutY="48.0" text="Usuario e/ou Senha invalidos" textFill="#f20000" visible="false" />
          </children>
       </Group>
    </children>

@@ -22,6 +22,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		if (vo.getSenha() == vo2.getSenha() & vo.getLogin() == vo2.getLogin()){
 			return true;
 		}else{
+			System.out.println("Falha na autenticação");
 			return false;
 		}
 	}

@@ -6,8 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.bo.UsuarioBO;
 import model.vo.UsuarioVO;
+import view.Telas;
 
-public class TelaLoginController {
+public class TelaLoginController extends Telas{
 
     @FXML private TextField login;
     @FXML private TextField senha;
@@ -25,12 +26,15 @@ public class TelaLoginController {
             if (resultado == true){
                 if(autenticado.getTipoUsuario() == 0){
                     // Abrir menu do Administrador
-                    
+                    telaAdministrador();
                 }else{
                     if(autenticado.getTipoUsuario() == 1){
                         // Abrir menu do Médico
+                        telaMedico();
+
                     }else{
                             // Abrir menu do Paciente
+                            telaPaciente();
                     }
                 }
             }

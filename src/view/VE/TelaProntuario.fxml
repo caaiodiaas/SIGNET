@@ -7,35 +7,32 @@
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
-<Pane prefHeight="301.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="/SIGNET/src/controller/frontController.java">
+<Pane prefHeight="398.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="/SIGNET/src/controller/frontController.java">
    <children>
-      <Group>
-         <children>
-            <ImageView fitHeight="122.0" fitWidth="506.0" layoutY="-108.0">
-               <image>
-                  <Image url="@LogoTopo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Group>
-      <ImageView fitHeight="224.0" fitWidth="558.0" layoutX="6.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="122.0" fitWidth="506.0">
+         <image>
+            <Image url="@LogoTopo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="224.0" fitWidth="558.0" layoutX="8.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@TelaProntuário.png" />
          </image>
       </ImageView>
-      <Text fill="#346c26" layoutX="195.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prontuário" wrappingWidth="116.0">
+      <Text fill="#346c26" layoutX="187.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prontuário" wrappingWidth="116.0">
          <font>
             <Font name="Constantia" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="textoPacienteProntuario" editable="false" layoutX="77.0" layoutY="52.0" prefHeight="25.0" prefWidth="231.0" />
-      <TextField fx:id="textoMedicoProntuario" editable="false" layoutX="77.0" layoutY="89.0" prefHeight="25.0" prefWidth="231.0" />
-      <TextField fx:id="textoDataProntuario" editable="false" layoutX="370.0" layoutY="52.0" prefHeight="25.0" prefWidth="106.0" />
-      <TextArea fx:id="textoObservacoesProntuario" editable="false" layoutX="43.0" layoutY="133.0" prefHeight="61.0" prefWidth="417.0" />
-      <Button fx:id="botaoVoltar" layoutX="11.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="18.0" visible="false" />
-      <Button fx:id="botaoEditarProntuario" layoutX="381.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" visible="false" />
-      <Button fx:id="botaoApagarProntuario" layoutX="462.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="18.0" visible="false" />
-      <TextField fx:id="textoIdProntuario" editable="false" layoutX="317.0" layoutY="17.0" opacity="0.6" prefHeight="25.0" prefWidth="128.0" />
-      <Text fill="#da0000" layoutX="290.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="201.501953125" />
+      <TextField fx:id="textoPacienteProntuario" editable="false" layoutX="81.0" layoutY="180.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="textoMedicoProntuario" editable="false" layoutX="81.0" layoutY="217.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="textoDataProntuario" editable="false" layoutX="374.0" layoutY="180.0" prefHeight="25.0" prefWidth="106.0" />
+      <TextArea fx:id="textoObservacoesProntuario" editable="false" layoutX="43.0" layoutY="264.0" prefHeight="61.0" prefWidth="417.0" />
+      <Button fx:id="botaoVoltar" layoutX="11.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0" text="Voltar" />
+      <Button fx:id="botaoEditarProntuario" layoutX="382.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Editar" />
+      <Button fx:id="botaoApagarProntuario" layoutX="43.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Remover" visible="false" />
+      <TextField fx:id="textoIdProntuario" editable="false" layoutX="309.0" layoutY="141.0" opacity="0.6" prefHeight="25.0" prefWidth="128.0" />
+      <Text fill="#da0000" layoutX="281.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui permissão para isso." visible="false" wrappingWidth="201.501953125" />
+      <Button fx:id="botaoSalvarProntuario" layoutX="281.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Salvar" visible="false" />
    </children>
 </Pane>
