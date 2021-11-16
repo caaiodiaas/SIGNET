@@ -5,27 +5,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.BaseInterDAO;
 import model.dao.UsuarioDAO;
 import model.vo.UsuarioVO;
 
 public class UsuarioBO implements BaseInterBO<UsuarioVO>{
-	BaseInterDAO<UsuarioVO> dao = new UsuarioDAO<>();
-
-	public boolean autenticar(UsuarioVO vo) throws SQLException{
-		UsuarioVO vo2 = new UsuarioVO();
-		ResultSet rs = dao.buscarPorId(vo);
-
-		vo2.setLogin(rs.getString("usuario_login"));
-		vo2.setSenha(rs.getString("usuario_senha"));
-
-		if (vo.getSenha() == vo2.getSenha() & vo.getLogin() == vo2.getLogin()){
-			return true;
-		}else{
-			System.out.println("Falha na autenticação");
-			return false;
-		}
-	}
+	UsuarioDAO<UsuarioVO> dao = new UsuarioDAO<>();
 	
 	public void inserir(UsuarioVO vo) throws Exception{
 		try {
@@ -185,12 +169,17 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
 		ResultSet rs = dao2.buscarPorLogin(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Usuario n�o encontrado.");
+			throw new Exception("Erro ao listar, Usuario n�o encontrado.");
 		}
 		else {
+			vo2.setLogin(rs.getString("usuario_login"));
+			vo2.setSenha(rs.getString("usuario_senha"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
+			vo2.setNome(rs.getString("pessoa_nome"));
+			vo2.setCpf(rs.getString("pessoa_cpf"));
+			vo2.setEndereco(rs.getString("pessoa_endereco"));
+			
 		while(rs.next()) {
-
-			vo2.setId(rs.getLong("usuario_id"));
 			vo2.setLogin(rs.getString("usuario_login"));
 			vo2.setSenha(rs.getString("usuario_senha"));
 			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));

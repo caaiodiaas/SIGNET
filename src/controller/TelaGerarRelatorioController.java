@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import javafx.event.ActionEvent;
 import view.Telas;
@@ -16,4 +16,4 @@ public class TelaGerarRelatorioController {
 			e.printStackTrace();
 		}
 	};
-}
+}*/

@@ -20,7 +20,13 @@ public class TelaAdministradorController extends Telas{
     };
 
     public void abrirConsultas(){
+    	try {
+            // Abrir TelaLogin
+            telaListaConsulta();
 
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     };
 
     public void abrirMedicos(){

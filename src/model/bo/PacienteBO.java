@@ -87,30 +87,27 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		}	
 	}
 	
-	public List<PacienteVO> buscarPorNome(PacienteVO vo) throws Exception{
+	public PacienteVO buscarPorNome(PacienteVO vo) throws Exception{
 		try {
-		List<PacienteVO> list = new ArrayList<>();	
 		PacienteDAO<PacienteVO> dao2 = new PacienteDAO<>();
 		ResultSet rs = dao2.buscarPorNome(vo);
+		PacienteVO vo2 = new PacienteVO();
 		if(rs.next() == false) {
 			throw new Exception("Erro ao listar, paciente nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
-			PacienteVO vo2 = new PacienteVO();
 			vo2.setId(rs.getLong("paciente_id"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
-			vo2.setEndereco(rs.getString("pessoa_endereco"));
-			
-			list.add(vo2);
+			vo2.setEndereco(rs.getString("pessoa_endereco"));			
 			
 			System.out.println("Id: " + vo2.getId());
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
 			System.out.println("Endereco: " + vo2.getEndereco());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -123,11 +120,23 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		List<PacienteVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, pacientes nï¿½o encontrados.");
+			throw new Exception("Erro ao listar, pacientes não encontrados.");
 		}
 		else {
-		while(rs.next()) {
 			PacienteVO vo2 = new PacienteVO();
+			vo2.setId(rs.getLong("paciente_id"));
+			vo2.setNome(rs.getString("pessoa_nome"));
+			vo2.setCpf(rs.getString("pessoa_cpf"));
+			vo2.setEndereco(rs.getString("pessoa_endereco"));
+			
+			list.add(vo2);
+			
+			System.out.println("Id: " + vo2.getId());
+			System.out.println("Nome: " + vo2.getNome());
+			System.out.println("CPF: " + vo2.getCpf());
+			System.out.println("Endereco: " + vo2.getEndereco());
+
+		while(rs.next()) {
 			vo2.setId(rs.getLong("paciente_id"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));

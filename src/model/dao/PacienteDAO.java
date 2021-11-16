@@ -11,14 +11,17 @@ import model.vo.PacienteVO;
 public class PacienteDAO<VO extends PacienteVO> extends BaseDAO<VO>{
 	
 		public void inserir(VO vo) {
-		String sql = "INSERT INTO paciente(pessoa_nome,pessoa_endereco,pessoa_cpf,paciente_id) values (?,?,?,?)";
+		String sql = "INSERT INTO Paciente(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipoUsuario) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
-			ptst.setLong(4,vo.getId());
+			ptst.setString(4,vo.getLogin());
+			ptst.setString(5,vo.getSenha());
+			ptst.setInt(6,vo.getTipoUsuario());
+			//ptst.setLong(7,vo.getId());
 			
 			int affectedRows = ptst.executeUpdate();			
 			

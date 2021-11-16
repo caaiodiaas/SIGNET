@@ -49,7 +49,7 @@ public class Telas extends Application {
 	}
 
 	public static void telaAdministrador() throws Exception {
-		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaAdmnistrador.fxml"));
+		Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaAdministrador.fxml"));
 		Scene cena = new Scene(root);
 		primaryStage.setScene(cena);
 		primaryStage.show();

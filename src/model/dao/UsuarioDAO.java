@@ -172,7 +172,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1,vo.getLogin());
-			rs = ptst.executeQuery(sql);
+			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
