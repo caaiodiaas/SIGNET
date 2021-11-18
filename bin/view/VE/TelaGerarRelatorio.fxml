@@ -7,27 +7,31 @@
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
-<Pane prefHeight="398.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="/SIGNET/src/controller/frontController.java">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaGerarRelatorioController">
    <children>
-      <ImageView fitHeight="122.0" fitWidth="506.0" layoutX="1.0">
-         <image>
-            <Image url="@LogoTopo.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="224.0" fitWidth="493.0" layoutX="7.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@TelaRelatorio.png" />
-         </image>
-      </ImageView>
-      <Text fill="#346c26" layoutX="166.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerar Relatório" wrappingWidth="222.0">
-         <font>
-            <Font name="Constantia" size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="botaoGerarRelatorio" layoutX="378.0" layoutY="323.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="111.0" text="Gerar Relatorio" />
-      <Button fx:id="botaoVoltar" layoutX="8.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0" text="Voltar" />
-      <TextField fx:id="textoMedicoRelatorio" layoutX="90.0" layoutY="196.0" prefHeight="25.0" prefWidth="291.0" />
-      <TextField fx:id="textoDataInicio" layoutX="89.0" layoutY="228.0" prefHeight="25.0" prefWidth="92.0" />
-      <TextField fx:id="textoDataFim" layoutX="89.0" layoutY="260.0" prefHeight="25.0" prefWidth="92.0" />
+      <Group layoutX="145.0" layoutY="130.0" scaleX="1.52" scaleY="1.6">
+         <children>
+            <ImageView fitHeight="243.0" fitWidth="493.0" layoutX="7.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@TelaRelatorio.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="122.0" fitWidth="506.0" layoutX="1.0">
+               <image>
+                  <Image url="@LogoTopo.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="textoDataFim" layoutX="89.0" layoutY="260.0" prefHeight="25.0" prefWidth="95.0" promptText="DD/MM/AAAA" />
+            <ComboBox fx:id="medicos" layoutX="90.0" layoutY="196.0" onMouseClicked="#comboMedicos" prefHeight="25.0" prefWidth="290.0" />
+            <Button fx:id="botaoGerarRelatorio" layoutX="378.0" layoutY="323.0" mnemonicParsing="false" onAction="#gerarRelatorio" prefHeight="32.0" prefWidth="111.0" text="Gerar Relatorio" textFill="#346c26" />
+            <TextField fx:id="textoDataInicio" layoutX="89.0" layoutY="228.0" prefHeight="25.0" prefWidth="95.0" promptText="DD/MM/AAAA" />
+            <Button fx:id="botaoVoltar" layoutX="8.0" layoutY="146.0" mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="49.0" text="Voltar" textFill="#346c26" />
+            <Text fill="#346c26" layoutX="166.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerar Relatório" wrappingWidth="222.0">
+               <font>
+                  <Font name="Constantia" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
    </children>
 </Pane>

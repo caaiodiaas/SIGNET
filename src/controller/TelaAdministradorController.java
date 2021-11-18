@@ -16,12 +16,18 @@ public class TelaAdministradorController extends Telas{
     }
 
     public void abrirRelatorios(){
-    
+    	try {
+            // Abrir Lista Consultas
+    		telaGerarRelatorio();
+
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     };
 
     public void abrirConsultas(){
     	try {
-            // Abrir TelaLogin
+            // Abrir Lista Consultas
     		telaListaConsulta();
 
         } catch (Exception e) {

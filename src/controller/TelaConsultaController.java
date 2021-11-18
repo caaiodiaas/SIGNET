@@ -12,7 +12,6 @@ public class TelaConsultaController {
 
 	public void Voltar(ActionEvent event) {
 		try {
-			Telas.telaMedico();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

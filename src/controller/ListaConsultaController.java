@@ -1,88 +1,220 @@
 package controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.vo.ConsultaVO;
+import model.vo.MedicoVO;
 import view.Telas;
 import model.bo.ConsultaBO;
-import model.bo.PacienteBO;
+import model.bo.MedicoBO;
+import model.dao.ConsultaDAO;
 
-public class ListaConsultaController extends Telas{
+public class ListaConsultaController extends Telas implements Initializable{
 	
 	@FXML private TableView<ConsultaVO> tabelaConsulta;
     @FXML private TableColumn<ConsultaVO, Long> colunaId;
     @FXML private TableColumn<ConsultaVO, String> colunaPaciente;
 	@FXML private TableColumn<ConsultaVO, String> colunaMedico;
 	@FXML private TableColumn<ConsultaVO, String> colunaData;
-	@FXML private TableColumn<ConsultaVO, String> colunaHorario;
+	@FXML private TableColumn<ConsultaVO, String> colunaHora;
 	@FXML private TableColumn<ConsultaVO, Integer> colunaStatus;
-	//@FXML private TableColumn<ConsultaVO, ConsultaVO> columnEdit;
-	//@FXML private TableColumn<ConsultaVO, ConsultaVO> columnDelete;
-	//public static final String PEN_SOLID = "M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z";
-	//public static final String TRASH_SOLID = "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z";
-	ConsultaBO bo = new ConsultaBO();
-	PacienteBO bop = new PacienteBO();
+	
+	@FXML private TitledPane telaDados;
+	@FXML private TextField acessarPaciente;
+	@FXML private ComboBox<String> acessarMedico;
+	@FXML private TextField acessarData;
+	@FXML private TextField acessarHorario;
+	@FXML private ComboBox<String> acessarStatus;
+	@FXML private Button acessarSalvar;
+	@FXML private Button acessarRemover;
+	
+	@FXML private TextField pesquisaConsulta;
 	
 	public void initialize (URL url,ResourceBundle rb) {
-		colunaPaciente.setCellValueFactory(new PropertyValueFactory<ConsultaVO, String>("Paciente"));
-		colunaMedico.setCellValueFactory(new PropertyValueFactory<ConsultaVO, String>("Medico"));
-		colunaData.setCellValueFactory(new PropertyValueFactory<ConsultaVO, String>("Data"));
-		colunaHorario.setCellValueFactory(new PropertyValueFactory<ConsultaVO, String>("Horario"));
-		colunaStatus.setCellValueFactory(new PropertyValueFactory<ConsultaVO, Integer>("Status"));
-		colunaId.setCellValueFactory(new PropertyValueFactory<ConsultaVO, Long>("Id"));
-
-		tabelaConsulta.getItems().setAll(ListConsulta());
+		colunaPaciente.setCellValueFactory(new PropertyValueFactory<>("Paciente"));
+		colunaMedico.setCellValueFactory(new PropertyValueFactory<>("Medico"));
+		colunaData.setCellValueFactory(new PropertyValueFactory<>("Data"));
+		colunaHora.setCellValueFactory(new PropertyValueFactory<>("Horario"));
+		colunaStatus.setCellValueFactory(new PropertyValueFactory<>("Status"));
+		colunaId.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		
-	}
-	
-	private List<ConsultaVO> ListConsulta(){
-		List<ConsultaVO> vo = new ArrayList();
 		try {
-			for( ConsultaVO vo2 : bo.buscarTudo()) {
-				System.out.println(bo.buscarTudo());
-				vo.add(vo2);
-			}
+
+			tabelaConsulta.setItems(listaDeConsultas());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return vo;				
-    }; 
-
+	}
+	
+    private ObservableList<ConsultaVO> listaDeConsultas() throws Exception {
+    	ConsultaBO bo = new ConsultaBO();
+    	List<ConsultaVO> list = bo.buscarTudo();
+    	ObservableList<ConsultaVO> consultasList = FXCollections.observableArrayList(list);
+        return consultasList;
+    }
+    
+    private ObservableList<ConsultaVO> listaDeConsultas(ConsultaVO vo) throws Exception {
+    	ConsultaBO bo = new ConsultaBO();
+    	List<ConsultaVO> list = bo.buscar(vo);
+    	ObservableList<ConsultaVO> consultasList = FXCollections.observableArrayList(list);
+        return consultasList;
+    }
+	
 	public void adicionar() {
 		try {
             // Abrir TelaLogin
-            telaConsulta();
+            telaCadastrarConsulta();
 
         } catch (Exception e) {
             //TODO: handle exception
         }
 	};
 
-	public void abrirConsulta() {
-		try {
-            // Abrir TelaLogin
-			telaConsulta();
+	public void editar() {
+		
+		acessarMedico.setDisable(false);
+		acessarData.setEditable(true);
+		acessarHorario.setEditable(true);
+		acessarStatus.setDisable(false);
+		acessarSalvar.setVisible(true);
+		acessarRemover.setVisible(true);
 
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
 	};
 	
-	public void buscar() {
+	public void comboStatus() {
+		acessarStatus.setItems(FXCollections.observableArrayList("Marcada", "Realizada", "Cancelada"));
+
+	};
+	
+	public void comboMedico() {
+		MedicoBO bo = new MedicoBO();
+		List<MedicoVO> list = new ArrayList<>();
+		try {
+			list = bo.buscarTudo();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String> list2 = new ArrayList<>();
+		for (MedicoVO vo : list) {
+			list2.add(vo.getNome());
+		}
+		acessarMedico.setItems(FXCollections.observableArrayList(list2));
+	};
+	
+	public void salvar() {
+		ConsultaDAO<ConsultaVO> dao = new ConsultaDAO<>();
+		ConsultaVO vo = new ConsultaVO();
+		vo.setMedico(acessarMedico.getValue());
+		vo.setPaciente(acessarPaciente.getText());
+		vo.setData(acessarData.getText());
+		vo.setHorario(acessarHorario.getText());
+		vo.setStatus(acessarStatus.getValue());
+		try {
+			dao.editar(vo);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		
+		
+		acessarMedico.setDisable(true);
+		acessarData.setEditable(false);
+		acessarHorario.setEditable(false);
+		acessarStatus.setDisable(true);
+		acessarSalvar.setVisible(false);
+		acessarRemover.setVisible(false);
+		telaDados.setVisible(false);
+		try {
+			tabelaConsulta.setItems(listaDeConsultas());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	};
+	
+	public void remover() {
+		ConsultaDAO<ConsultaVO> dao = new ConsultaDAO<>();
+		ConsultaVO vo = new ConsultaVO();
+		vo.setPaciente(acessarPaciente.getText());
+		vo.setData(acessarData.getText());
+		dao.removerPorPaciente(vo);
+		
+		
+		
+		acessarMedico.setDisable(true);
+		acessarData.setEditable(false);
+		acessarHorario.setEditable(false);
+		acessarStatus.setDisable(true);
+		acessarSalvar.setVisible(false);
+		acessarRemover.setVisible(false);
+		telaDados.setVisible(false);
+		try {
+			tabelaConsulta.setItems(listaDeConsultas());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	};
+	
+	public void voltarDados() {
+		acessarMedico.setDisable(true);
+		acessarData.setEditable(false);
+		acessarHorario.setEditable(false);
+		acessarStatus.setDisable(true);
+		acessarSalvar.setVisible(false);
+		acessarRemover.setVisible(false);
+		telaDados.setVisible(false);
+	};
+	
+	public void acessar() throws Exception {
+		try {
+			ObservableList<ConsultaVO> consulta = tabelaConsulta.getSelectionModel().getSelectedItems();
+			acessarPaciente.setText(consulta.get(0).getPaciente());
+			acessarMedico.setValue(consulta.get(0).getMedico());
+			acessarData.setText(consulta.get(0).getData());
+			acessarHorario.setText(consulta.get(0).getHorario());
+			acessarStatus.setValue(consulta.get(0).getStatus());
+			telaDados.setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	};
+	
+	public void buscar() throws Exception {
+		
+		ConsultaVO vo = new ConsultaVO();
+		vo.setMedico(pesquisaConsulta.getText());
+		vo.setPaciente(pesquisaConsulta.getText());
+		vo.setStatus(pesquisaConsulta.getText());
+		vo.setData(pesquisaConsulta.getText());
+		vo.setHorario(pesquisaConsulta.getText());
+		
+		if(pesquisaConsulta.getText() == null || pesquisaConsulta.getText().equals("")) {
+			tabelaConsulta.setItems(listaDeConsultas());
+		}
+		
+		tabelaConsulta.setItems(listaDeConsultas(vo));
 
 	};
 	

@@ -21,11 +21,11 @@ public class TelaLoginController extends Telas{
         UsuarioVO vo = new UsuarioVO();
         vo.setLogin(login.getText());
         vo.setSenha(senha.getText());
-        
-        try {
-        	UsuarioVO autenticado = usuBO.buscarPorLogin(vo);            
+               
+        try {        
+        	UsuarioVO autenticado = usuBO.buscarPorLogin(vo);
             if (autenticado.getLogin().equals(vo.getLogin()) && autenticado.getSenha().equals(vo.getSenha())){
-            	System.out.println(autenticado.getTipoUsuario());
+
                 if(autenticado.getTipoUsuario() == 0){
                 	 // Abrir menu do Administrador
                     telaAdministrador();
@@ -44,6 +44,7 @@ public class TelaLoginController extends Telas{
             }
         } catch (Exception e) {
             erroAut.setVisible(true);
+            e.printStackTrace();
         }
 
 

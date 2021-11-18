@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarPacienteController">
+   <children>
+      <Group layoutX="145.0" layoutY="125.0" scaleX="1.52" scaleY="1.6">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="492.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@LogoTopo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="269.0" fitWidth="492.0" layoutX="5.0" layoutY="118.0">
+               <image>
+                  <Image url="@CadastrarPaciente.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="botaoVoltar" layoutX="7.0" layoutY="118.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" textFill="#346c26" />
+            <TextField fx:id="cpf" layoutX="82.0" layoutY="247.0" prefHeight="25.0" prefWidth="125.0" />
+            <TextField fx:id="nome" layoutX="82.0" layoutY="166.0" prefHeight="25.0" prefWidth="296.0" />
+            <TextField fx:id="endereco" layoutX="81.0" layoutY="211.0" prefHeight="25.0" prefWidth="296.0" />
+            <TextField fx:id="senha" layoutX="81.0" layoutY="309.0" prefHeight="25.0" prefWidth="141.0" />
+            <TextField fx:id="login" layoutX="81.0" layoutY="278.0" prefHeight="25.0" prefWidth="141.0" />
+            <Label layoutX="154.0" layoutY="116.0" text="Cadastrar Paciente" textFill="#346c26">
+               <font>
+                  <Font name="Constantia" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoCadastrar" layoutX="384.0" layoutY="319.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="42.0" prefWidth="88.0" text="Cadastrar" textFill="#346c26" />
+         </children>
+      </Group>
+   </children>
+</Pane>

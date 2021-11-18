@@ -38,11 +38,7 @@ public class UsuarioVO extends PessoaVO{
 	}
 
 	public void setTipoUsuario(int tipoUsuario) {
-		if(tipoUsuario != 0 || tipoUsuario != 1 || tipoUsuario != 2){
-			
-		}else {
 			this.tipoUsuario = tipoUsuario;
-		}
 	}
 	
 	public Long getId() {

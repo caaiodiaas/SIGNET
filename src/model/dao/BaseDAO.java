@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
-   private static Connection conn = null;
+   protected static Connection conn = null;
    private static final String url = "jdbc:postgresql://localhost:5432/SIGNET.ofc";
    private static final String user = "postgres";
    private static final String senha = "";

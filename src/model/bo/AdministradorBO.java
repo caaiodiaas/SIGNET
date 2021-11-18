@@ -8,6 +8,8 @@ import model.dao.AdministradorDAO;
 import model.dao.BaseInterDAO;
 import model.vo.AdministradorVO;
 
+
+
 public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 	BaseInterDAO<AdministradorVO> dao = new AdministradorDAO<>();
 	
@@ -155,5 +157,5 @@ public class AdministradorBO implements BaseInterBO<AdministradorVO>{
 		catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
-	}
+	}		 
 }

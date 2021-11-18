@@ -7,28 +7,31 @@
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
-<Pane prefHeight="398.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaAdministradorController">
+<Pane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaAdministradorController">
    <children>
-      <ImageView fitHeight="122.0" fitWidth="506.0">
-         <image>
-            <Image url="@LogoTopo.png" />
-         </image>
-      </ImageView>
-      <Group />
-      <ImageView fitHeight="314.0" fitWidth="547.0" layoutX="-55.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@TelaAdministador.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="botaoMedicosAdmin" layoutX="133.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirMedicos" prefHeight="25.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
-      <Button fx:id="botaoPacientesAdmin" layoutX="365.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirPacientes" prefHeight="24.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
-      <Button fx:id="botaoConsultasAdmin" layoutX="133.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirConsultas" prefHeight="17.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
-      <Button fx:id="botaoRelatoriosAdmin" layoutX="365.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirRelatorios" prefHeight="14.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
-      <Button fx:id="botaoEncerrarAdmin" layoutY="372.0" mnemonicParsing="false" onAction="#encerrarSessao" prefHeight="25.0" prefWidth="80.0" text="Sair" textFill="#1aab03" />
-      <Text fill="#346c26" layoutX="142.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Administrador" wrappingWidth="223.0">
-         <font>
-            <Font name="Constantia" size="24.0" />
-         </font>
-      </Text>
+      <Group layoutX="120.0" layoutY="120.0" scaleX="1.52" scaleY="1.6">
+         <children>
+            <ImageView fitHeight="314.0" fitWidth="547.0" layoutX="-55.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@TelaAdministador.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="122.0" fitWidth="506.0">
+               <image>
+                  <Image url="@LogoTopo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="botaoMedicosAdmin" layoutX="133.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirMedicos" prefHeight="25.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
+            <Button fx:id="botaoPacientesAdmin" layoutX="365.0" layoutY="212.0" mnemonicParsing="false" onAction="#abrirPacientes" prefHeight="24.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
+            <Button fx:id="botaoRelatoriosAdmin" layoutX="365.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirRelatorios" prefHeight="14.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
+            <Text fill="#346c26" layoutX="142.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Administrador" wrappingWidth="223.0">
+               <font>
+                  <Font name="Constantia" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="botaoEncerrarAdmin" layoutY="372.0" mnemonicParsing="false" onAction="#encerrarSessao" prefHeight="25.0" prefWidth="80.0" text="Sair" textFill="#1aab03" />
+            <Button fx:id="botaoConsultasAdmin" layoutX="133.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirConsultas" prefHeight="17.0" prefWidth="74.0" text="&gt;&gt;" textFill="#309322" />
+         </children>
+      </Group>
    </children>
 </Pane>

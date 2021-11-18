@@ -87,27 +87,74 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 		}	
 	}
 	
-	public PacienteVO buscarPorNome(PacienteVO vo) throws Exception{
+	public List<PacienteVO> buscar(PacienteVO vo) throws Exception{
 		try {
+			List<PacienteVO> list = new ArrayList<>();
 		PacienteDAO<PacienteVO> dao2 = new PacienteDAO<>();
-		ResultSet rs = dao2.buscarPorNome(vo);
-		PacienteVO vo2 = new PacienteVO();
+		ResultSet rs = dao2.buscarTudo();
 		if(rs.next() == false) {
 			throw new Exception("Erro ao listar, paciente nï¿½o encontrado.");
 		}
 		else {
-		while(rs.next()) {
+			PacienteVO vo2 = new PacienteVO();
 			vo2.setId(rs.getLong("paciente_id"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
-			vo2.setEndereco(rs.getString("pessoa_endereco"));			
+			vo2.setEndereco(rs.getString("pessoa_endereco"));	
 			
-			System.out.println("Id: " + vo2.getId());
-			System.out.println("Nome: " + vo2.getNome());
-			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereco: " + vo2.getEndereco());
+			String nome1, nome2, cpf1, cpf2;
+			
+			if(vo.getNome() == null || vo2.getNome() == null) {
+				nome1 = "-";
+				nome2 = "--";
+			}else {
+				nome1 = vo.getNome().substring(0, 3);
+				nome2 = vo2.getNome().substring(0, 3);
+			}
+			
+			if(vo.getCpf() == null || vo2.getCpf() == null) {
+				cpf1 = "-";
+				cpf2 = "--";
+			}else {
+				cpf1 = vo.getCpf().substring(0, 3);
+				cpf2 = vo2.getCpf().substring(0, 3);
+			}
+			
+			if(nome1.equals(nome2) || cpf1.equals(cpf2)) {
+				list.add(vo2);
+			}
+			
+		while(rs.next()) {
+			PacienteVO vo3 = new PacienteVO();
+			vo3.setId(rs.getLong("paciente_id"));
+			vo3.setNome(rs.getString("pessoa_nome"));
+			vo3.setCpf(rs.getString("pessoa_cpf"));
+			vo3.setEndereco(rs.getString("pessoa_endereco"));	
+			
+			nome1 = vo.getNome().substring(0, 3);
+			nome2 = vo3.getNome().substring(0, 3);
+			
+			if(vo.getNome() == null || vo2.getNome() == null) {
+				nome1 = "-";
+				nome2 = "--";
+			}else {
+				nome1 = vo.getNome().substring(0, 3);
+				nome2 = vo3.getNome().substring(0, 3);
+			}
+			
+			if(vo.getCpf() == null || vo3.getCpf() == null) {
+				cpf1 = "-";
+				cpf2 = "--";
+			}else {
+				cpf1 = vo.getCpf().substring(0, 3);
+				cpf2 = vo3.getCpf().substring(0, 3);
+			}
+			
+			if(nome1.equals(nome2) || cpf1.equals(cpf2)) {
+				list.add(vo3);
+			}
 		}
-			return vo2;
+			return list;
 			}
 		}
 		catch(Exception e) {
@@ -117,37 +164,36 @@ public class PacienteBO implements BaseInterBO<PacienteVO>{
 	
 	public List<PacienteVO> buscarTudo() throws Exception{
 		try {
-		List<PacienteVO> list = new ArrayList<>();	
-		ResultSet rs = dao.buscarTudo();
+		List<PacienteVO> list= new ArrayList<>();
+		PacienteDAO<PacienteVO> dao2 = new PacienteDAO<>();
+		ResultSet rs = dao2.buscarTudo();
+
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, pacientes não encontrados.");
+			throw new Exception("Erro ao listar, Pacientes não encontrados.");
 		}
 		else {
 			PacienteVO vo2 = new PacienteVO();
-			vo2.setId(rs.getLong("paciente_id"));
+
 			vo2.setNome(rs.getString("pessoa_nome"));
-			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
+			vo2.setCpf(rs.getString("pessoa_cpf"));
+			vo2.setId(rs.getLong("paciente_id"));
+			
 			
 			list.add(vo2);
-			
-			System.out.println("Id: " + vo2.getId());
-			System.out.println("Nome: " + vo2.getNome());
-			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereco: " + vo2.getEndereco());
 
 		while(rs.next()) {
-			vo2.setId(rs.getLong("paciente_id"));
-			vo2.setNome(rs.getString("pessoa_nome"));
-			vo2.setCpf(rs.getString("pessoa_cpf"));
-			vo2.setEndereco(rs.getString("pessoa_endereco"));
 			
-			list.add(vo2);
+			PacienteVO vo3 = new PacienteVO();
+
+			vo3.setNome(rs.getString("pessoa_nome"));
+			vo3.setEndereco(rs.getString("pessoa_endereco"));
+			vo3.setCpf(rs.getString("pessoa_cpf"));
+			vo3.setId(rs.getLong("paciente_id"));
 			
-			System.out.println("Id: " + vo2.getId());
-			System.out.println("Nome: " + vo2.getNome());
-			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereco: " + vo2.getEndereco());
+			
+			list.add(vo3);
+				
 		}
 			return list;
 			}

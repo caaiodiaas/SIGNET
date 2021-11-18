@@ -22,7 +22,7 @@ public abstract class PessoaVO{
 		return endereco;
 	}
 	public void setEndereco(String endereco) {
-		if(endereco == null || endereco.equals("") || endereco.length() < 10){
+		if(endereco == null || endereco.equals("") || endereco.length() < 2){
 			
 		}else {
 				this.endereco = endereco;
@@ -34,7 +34,7 @@ public abstract class PessoaVO{
 		return cpf;
 	}
 	public void setCpf(String cpf) {
-		if(cpf == null || cpf.equals("") || cpf.length() < 11){
+		if(cpf == null || cpf.equals("") || cpf.length() < 2){
 			
 		}else {
 				this.cpf = cpf;

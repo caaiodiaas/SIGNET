@@ -6,7 +6,7 @@ public class MedicoVO extends UsuarioVO{
 
 	private String crm;
 	private Long id;
-	private float valorConsulta;
+	private String valorConsulta;
 	private String especializacao;
 	private List<ConsultaVO> consultas;
 	
@@ -25,7 +25,7 @@ public class MedicoVO extends UsuarioVO{
 		return crm;
 	}
 	public void setCrm(String crm) {
-		if(crm == null || crm.equals("") || crm.length() < 7){
+		if(crm == null || crm.equals("")){
 			
 		}else {
 				this.crm = crm;
@@ -33,11 +33,11 @@ public class MedicoVO extends UsuarioVO{
 	}
 	
 	
-	public float getValorConsulta() {
+	public String getValorConsulta() {
 		return valorConsulta;
 	}
-	public void setValorConsulta(float valorConsulta) {
-		if(valorConsulta < 0) {
+	public void setValorConsulta(String valorConsulta) {
+		if(valorConsulta == null || valorConsulta.equals("")) {
 
 		}else {
 			this.valorConsulta = valorConsulta;

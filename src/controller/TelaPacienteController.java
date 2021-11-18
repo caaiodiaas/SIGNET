@@ -17,7 +17,7 @@ public class TelaPacienteController {
 
 	};
 
-	public void Voltar(ActionEvent event) {
+	public void voltar(ActionEvent event) {
 		try {
 			Telas.telaLogin();
 		} catch (Exception e) {
