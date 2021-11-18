@@ -10,17 +10,21 @@ import model.vo.MedicoVO;
 public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 	
 		public void inserir(VO vo) {
-		String sql = "INSERT INTO medico(pessoa_nome,pessoa_endereco,pessoa_cpf, medico_crm, medico_valor_consulta,medico_especializacao) values (?,?,?,?,?,?)";
+		String sql = "INSERT INTO medico(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipousuario,medico_crm,medico_valor_Consulta,medico_especializacao) values (?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
+			
 			
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
-			ptst.setString(4,vo.getCrm());
-			ptst.setFloat(5,vo.getValorConsulta());
-			ptst.setString(6,vo.getEspecializacao());
+			ptst.setString(4,vo.getLogin());
+			ptst.setString(5,vo.getSenha());
+			ptst.setInt(6,vo.getTipoUsuario());
+			ptst.setString(7,vo.getCrm());
+			ptst.setString(8,vo.getValorConsulta());
+			ptst.setString(9,vo.getEspecializacao());
 			
 			int affectedRows = ptst.executeUpdate();			
 			
@@ -54,16 +58,16 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		}
 		
 		public void removerPorCpf(VO vo) {
-			String sql = "DELETE * FROM medico WHERE medico_cpf = ?";
-			PreparedStatement ptst;
+			String sql = "DELETE FROM medico WHERE pessoa_cpf = '"+vo.getCpf()+"'";
+			Statement ptst;
 			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setString(1, vo.getNome());
-				ptst.executeUpdate();
+				ptst = conn.createStatement();;
+				ptst.executeUpdate(sql);
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
 				}
+
 		}
 				
 		public void removerPorNome(VO vo) {
@@ -118,7 +122,7 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		}
 				
 		public ResultSet buscarTudo() {
-			String sql = "SELECT * FROM Medico";
+			String sql = "SELECT * FROM medico";
 			Statement st;
 			ResultSet rs = null;
 			try {
@@ -168,7 +172,7 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 			try {
 				ptst = getConnection().prepareStatement(sql);
 				ptst.setString(1,vo.getCpf());
-				rs = ptst.executeQuery(sql);
+				rs = ptst.executeQuery();
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -212,7 +216,7 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		        ResultSet rs = null;
 		        try {
 		            ptst = getConnection().prepareStatement(sql);
-		            ptst.setFloat(1,vo.getValorConsulta());
+		            ptst.setString(1,vo.getValorConsulta());
 		            rs = ptst.executeQuery(sql);
 		        } catch (SQLException e) {
 		            // TODO: handle exception
@@ -221,27 +225,27 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 			return rs;
 		}
 		
-		public void editar(VO vo) {
-			String sql = "UPDATE medico SET pessoa_nome = ? WHERE medico_id = ?";
-			PreparedStatement ptst;
-			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setString(1, vo.getNome());
-				ptst.setLong(2, vo.getId());
-				ptst.executeUpdate();
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
+		public void editar(VO vo) throws SQLException {
+            conn = getConnection();
+            String sql = "UPDATE medico SET pessoa_nome = '" + vo.getNome() + "', pessoa_endereco = '" + vo.getEndereco() + "', medico_crm = '" + vo.getCrm() + "', medico_valor_consulta = '" + vo.getValorConsulta() + "', medico_especializacao = '" + vo.getEspecializacao() +  "' WHERE pessoa_cpf = '" + vo.getCpf()+"'";
+
+            try {
+                Statement ptst = conn.createStatement();
+         
+                ptst.executeUpdate(sql);
+            } catch (SQLException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
 		
-		public void editarCrm(VO vo) {
-			String sql = "UPDATE medico SET medico_crm = ? WHERE medico_id = ?";
+		public void editarCrm(VO vo) throws SQLException {
+			String sql = "UPDATE medico SET medico_crm = ? WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql);
 			try {
-				ptst = getConnection().prepareStatement(sql);
 				ptst.setString(1, vo.getCrm());
-				ptst.setLong(2, vo.getId());
+				ptst.setString(2, vo.getCpf());
 				ptst.executeUpdate();
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -250,12 +254,12 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		}
 		
 		public void editarCpf(VO vo) {
-			String sql = "UPDATE medico SET pessoa_cpf = ? WHERE medico_id = ?";
+			String sql = "UPDATE medico SET pessoa_cpf = ? WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
 				ptst.setString(1, vo.getCpf());
-				ptst.setLong(2, vo.getId());
+				ptst.setString(2, vo.getCpf());
 				ptst.executeUpdate();
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -265,12 +269,12 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		
 		
 		public void editarEndereco(VO vo) {
-			String sql = "UPDATE medico SET pessoa_endereco = ? WHERE medico_id = ?";
+			String sql = "UPDATE medico SET pessoa_endereco = ? WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
 				ptst.setString(1, vo.getEndereco());
-				ptst.setLong(2, vo.getId());
+				ptst.setString(2, vo.getCpf());
 				ptst.executeUpdate();
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -279,12 +283,12 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		}
 		
 		public void editarEspecializacao(VO vo) {
-			String sql = "UPDATE medico SET medico_especializacao = ? WHERE medico_id = ?";
+			String sql = "UPDATE medico SET medico_especializacao = ? WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
 				ptst.setString(1, vo.getEspecializacao());
-				ptst.setLong(2, vo.getId());
+				ptst.setString(2, vo.getCpf());
 				ptst.executeUpdate();
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -293,12 +297,12 @@ public class MedicoDAO<VO extends MedicoVO> extends BaseDAO<VO> {
 		}
 		
 		public void editarValorConsulta(VO vo) {
-			String sql = "UPDATE medico SET medico_valor_consulta = ? WHERE medico_id = ?";
+			String sql = "UPDATE medico SET medico_valor_consulta = ? WHERE pessoa_cpf = ?";
 			PreparedStatement ptst;
 			try {
 				ptst = getConnection().prepareStatement(sql);
-				ptst.setFloat(1, vo.getValorConsulta());
-				ptst.setLong(2, vo.getId());
+				ptst.setString(1, vo.getValorConsulta());
+				ptst.setString(2, vo.getCpf());
 				ptst.executeUpdate();
 			} catch (SQLException e) {
 				// TODO: handle exception

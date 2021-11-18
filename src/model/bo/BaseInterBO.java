@@ -7,7 +7,7 @@ public interface BaseInterBO <VO>{
 	public void remover(VO entity) throws Exception;
 	public void removerTudo() throws Exception;
 	public void editar(VO entity) throws Exception;
-	public List<?> buscarPorId(VO entity) throws Exception;
+	public VO buscarPorId(VO entity) throws Exception;
 	public List<?> buscarTudo() throws Exception;
 	
 }

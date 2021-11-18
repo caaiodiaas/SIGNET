@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
-<Pane prefHeight="301.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="/SIGNET/src/controller/frontController.java">
+<Pane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListaMedicoController">
    <children>
-      <Group>
+      <Group layoutX="145.0" layoutY="125.0" scaleX="1.52" scaleY="1.6">
          <children>
-            <ImageView fitHeight="122.0" fitWidth="506.0" layoutY="-108.0">
+            <ImageView fitHeight="122.0" fitWidth="509.0" layoutX="-2.0" layoutY="1.0">
                <image>
                   <Image url="@LogoTopo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="301.0" fitWidth="506.0" layoutX="1.0" layoutY="4.0">
-               <image>
-                  <Image url="@ListaMedico.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="botaoAdicionarMedico" layoutX="426.0" layoutY="29.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" visible="false" />
-            <Button fx:id="botaoExibir1" layoutX="467.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="0.0" visible="false" />
-            <Button fx:id="botaoExibir2" layoutX="468.0" layoutY="144.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="0.0" visible="false" />
-            <Button fx:id="botaoExibir3" layoutX="468.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="0.0" visible="false" />
-            <Button fx:id="botaoExibir4" layoutX="468.0" layoutY="194.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="0.0" visible="false" />
-            <Button fx:id="botaoExibir5" layoutX="468.0" layoutY="220.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="0.0" visible="false" />
-            <Button fx:id="botaoExibir6" layoutX="467.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="0.0" visible="false" />
-            <Button fx:id="botaoBuscarMedico" layoutX="361.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" visible="false" />
-            <Button fx:id="botaoVoltar" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="22.0" visible="false" />
-            <Button fx:id="botaoAnteriorPaciente" layoutX="232.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" visible="false" />
-            <Button fx:id="botaoProximoPaciente" layoutX="263.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="1.0" visible="false" />
-            <TextArea fx:id="textoNomeMedico1" editable="false" layoutX="14.0" layoutY="120.0" prefHeight="22.0" prefWidth="194.0" />
-            <TextArea fx:id="textoNomeMedico2" editable="false" layoutX="14.0" layoutY="146.0" prefHeight="22.0" prefWidth="194.0" />
-            <TextArea fx:id="textoNomeMedico4" editable="false" layoutX="14.0" layoutY="196.0" prefHeight="22.0" prefWidth="194.0" />
-            <TextArea fx:id="textoNomeMedico3" editable="false" layoutX="14.0" layoutY="170.0" prefHeight="22.0" prefWidth="194.0" />
-            <TextArea fx:id="textoNomeMedico6" editable="false" layoutX="14.0" layoutY="247.0" prefHeight="22.0" prefWidth="194.0" />
-            <TextArea fx:id="textoNomeMedico5" editable="false" layoutX="14.0" layoutY="221.0" prefHeight="22.0" prefWidth="194.0" />
-            <TextArea fx:id="textoEspecializacaoMedico1" editable="false" layoutX="210.0" layoutY="120.0" prefHeight="23.0" prefWidth="118.0" />
-            <TextArea fx:id="textoCrmMedico1" editable="false" layoutX="329.0" layoutY="121.0" prefHeight="23.0" prefWidth="82.0" />
-            <TextArea fx:id="textoIdMedico1" editable="false" layoutX="411.0" layoutY="120.0" prefHeight="23.0" prefWidth="45.0" />
-            <TextArea fx:id="textoIdMedico2" editable="false" layoutX="411.0" layoutY="146.0" prefHeight="23.0" prefWidth="45.0" />
-            <TextArea fx:id="textoCrmMedico2" editable="false" layoutX="329.0" layoutY="146.0" prefHeight="23.0" prefWidth="82.0" />
-            <TextArea fx:id="textoEspecializacaoMedico2" editable="false" layoutX="210.0" layoutY="145.0" prefHeight="23.0" prefWidth="118.0" />
-            <TextArea fx:id="textoEspecializacaoMedico4" editable="false" layoutX="210.0" layoutY="195.0" prefHeight="23.0" prefWidth="118.0" />
-            <TextArea fx:id="textoCrmMedico4" editable="false" layoutX="329.0" layoutY="196.0" prefHeight="23.0" prefWidth="82.0" />
-            <TextArea fx:id="textoIdMedico4" editable="false" layoutX="411.0" layoutY="196.0" prefHeight="23.0" prefWidth="45.0" />
-            <TextArea fx:id="textoIdMedico3" editable="false" layoutX="411.0" layoutY="171.0" prefHeight="23.0" prefWidth="45.0" />
-            <TextArea fx:id="textoCrmMedico3" editable="false" layoutX="329.0" layoutY="172.0" prefHeight="23.0" prefWidth="82.0" />
-            <TextArea fx:id="textoEspecializacaoMedico3" editable="false" layoutX="210.0" layoutY="171.0" prefHeight="23.0" prefWidth="118.0" />
-            <TextArea fx:id="textoEspecializacaoMedico6" editable="false" layoutX="210.0" layoutY="248.0" prefHeight="23.0" prefWidth="118.0" />
-            <TextArea fx:id="textoCrmMedico6" editable="false" layoutX="329.0" layoutY="249.0" prefHeight="23.0" prefWidth="82.0" />
-            <TextArea fx:id="textoIdMedico6" editable="false" layoutX="411.0" layoutY="248.0" prefHeight="23.0" prefWidth="45.0" />
-            <TextArea fx:id="textoIdMedico5" editable="false" layoutX="411.0" layoutY="222.0" prefHeight="23.0" prefWidth="45.0" />
-            <TextArea fx:id="textoCrmMedico5" editable="false" layoutX="329.0" layoutY="222.0" prefHeight="23.0" prefWidth="82.0" />
-            <TextArea fx:id="textoEspecializacaoMedico5" editable="false" layoutX="210.0" layoutY="221.0" prefHeight="23.0" prefWidth="118.0" />
-            <TextField fx:id="botaoBuscarMedico" layoutX="48.0" layoutY="30.0" prefHeight="8.0" prefWidth="315.0" />
+            <Label layoutX="166.0" layoutY="121.0" text="Lista de Medicos" textFill="#346c26">
+               <font>
+                  <Font name="Constantia" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoBuscarMedico" layoutX="359.0" layoutY="149.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" textFill="#346c26" />
+            <Button fx:id="botaAdicionarMedico" layoutX="426.0" layoutY="123.0" mnemonicParsing="false" onAction="#adicionar" text="Adicionar" textFill="#346c26" />
+            <TextField fx:id="pesquisaMedico" layoutX="16.0" layoutY="149.0" prefHeight="25.0" prefWidth="337.0" promptText="Nome, Especialização, CRM ou ID" />
+            <TableView fx:id="tabelaMedico" layoutX="14.0" layoutY="178.0" prefHeight="215.0" prefWidth="479.0">
+              <columns>
+                <TableColumn fx:id="colunaMedico" editable="false" prefWidth="145.6666717529297" text="Nome" />
+                <TableColumn fx:id="colunaEspecializacao" editable="false" prefWidth="78.33332824707031" text="Especializacao" />
+                  <TableColumn fx:id="colunaCrm" editable="false" minWidth="0.0" prefWidth="57.33331298828125" text="Crm" />
+                  <TableColumn fx:id="colunaId" editable="false" prefWidth="53.0" text="Id" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button fx:id="botaoVoltarMedico" layoutX="15.0" layoutY="123.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" textFill="#346c26" />
+            <Button fx:id="acessarMedico" layoutX="426.0" layoutY="149.0" mnemonicParsing="false" onAction="#acessar" prefHeight="25.0" prefWidth="66.0" text="Acessar" textFill="#346c26" />
+            <TitledPane fx:id="telaDados" animated="false" contentDisplay="CENTER" layoutX="84.0" layoutY="14.0" prefHeight="349.0" prefWidth="337.0" text="Dados Médico" textAlignment="RIGHT" textFill="#346c26" visible="false">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="acessarNome" editable="false" layoutX="59.0" layoutY="31.0" prefHeight="25.0" prefWidth="219.0" promptText="Nome" />
+                        <TextField fx:id="acessarCrm" editable="false" layoutX="58.0" layoutY="89.0" prefHeight="25.0" prefWidth="219.0" promptText="CRM" />
+                        <TextField fx:id="acessarEspecializacao" editable="false" layoutX="58.0" layoutY="127.0" prefHeight="25.0" prefWidth="219.0" promptText="Especialização" />
+                        <TextField fx:id="acessarValorConsulta" editable="false" layoutX="58.0" layoutY="237.0" prefHeight="25.0" prefWidth="219.0" promptText="Valor (R$)" />
+                        <TextField fx:id="acessarEndereco" editable="false" layoutX="58.0" layoutY="199.0" prefHeight="25.0" prefWidth="219.0" promptText="Endereço" />
+                        <TextField fx:id="acessarCpf" editable="false" layoutX="58.0" layoutY="162.0" prefHeight="25.0" prefWidth="219.0" promptText="CPF" />
+                        <Label layoutX="14.0" layoutY="35.0" text="Nome" textFill="#346c26" />
+                        <Label layoutX="13.0" layoutY="93.0" text="CRM" textFill="#346c26" />
+                        <Label layoutX="14.0" layoutY="131.0" text="Esp." textFill="#346c26" />
+                        <Label layoutX="15.0" layoutY="166.0" text="CPF" textFill="#346c26" />
+                        <Label layoutX="16.0" layoutY="203.0" text="End." textFill="#346c26" />
+                        <Label layoutX="17.0" layoutY="241.0" text="Valor" textFill="#346c26" />
+                        <Button fx:id="acessarEditar" layoutX="231.0" layoutY="277.0" mnemonicParsing="false" onAction="#editar" text="Editar" textFill="#346c26" />
+                        <Button fx:id="acessarSalvar" layoutX="174.0" layoutY="277.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" textFill="#346c26" visible="false" />
+                        <Button fx:id="acessarRemover" layoutX="102.0" layoutY="277.0" mnemonicParsing="false" onAction="#remover" text="Remover" textFill="#346c26" visible="false" />
+                        <Button fx:id="acessarVoltar" layoutX="12.0" layoutY="277.0" mnemonicParsing="false" onAction="#voltarDados" text="Voltar" textFill="#346c26" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
          </children>
       </Group>
    </children>

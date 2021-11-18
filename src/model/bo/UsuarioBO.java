@@ -4,18 +4,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.BaseInterDAO;
 import model.dao.UsuarioDAO;
 import model.vo.UsuarioVO;
 
 public class UsuarioBO implements BaseInterBO<UsuarioVO>{
-	BaseInterDAO<UsuarioVO> dao = new UsuarioDAO<>();
+	UsuarioDAO<UsuarioVO> dao = new UsuarioDAO<>();
+	
 	
 	public void inserir(UsuarioVO vo) throws Exception{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()) {
-				throw new Exception("Impossível cadastrar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel cadastrar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao.inserir(vo);
@@ -26,44 +26,42 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		}
 	}
 	
-	public List<UsuarioVO> buscarPorId(UsuarioVO vo) throws Exception{
+	public UsuarioVO buscarPorId(UsuarioVO vo) throws Exception{
 		try {
-		List<UsuarioVO> list = new ArrayList<>();	
+		UsuarioVO vo2 = new UsuarioVO();
 		ResultSet rs = dao.buscarPorId(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, usuário não encontrado.");
+			throw new Exception("Erro ao listar, usuï¿½rio nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
-			UsuarioVO vo2 = new UsuarioVO();
+
 			vo2.setId(rs.getLong("usuario_id"));
 			vo2.setLogin(rs.getString("usuario_login"));
 			vo2.setSenha(rs.getString("usuario_senha"));
-			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
-			
-			list.add(vo2);
 			
 			System.out.println("Id: " + vo2.getId());
 			System.out.println("Login: " + vo2.getLogin());
 			System.out.println("Senha: " + vo2.getSenha());
 			
 			switch(vo2.getTipoUsuario()) {
-			case 0: System.out.println("Tipo de usuário: Administrador");
+			case 0: System.out.println("Tipo de usuï¿½rio: Administrador");
 			break;
-			case 1: System.out.println("Tipo de usuário: Médico");
+			case 1: System.out.println("Tipo de usuï¿½rio: Mï¿½dico");
 			break;
-			case 2: System.out.println("Tipo de usuário: Paciente");
+			case 2: System.out.println("Tipo de usuï¿½rio: Paciente");
 			break;
 			}
 			
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereço: " + vo2.getEndereco());
+			System.out.println("Endereï¿½o: " + vo2.getEndereco());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
@@ -72,51 +70,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		
 	}
 
-	public List<UsuarioVO> buscarPorCpf(UsuarioVO vo) throws Exception{
-		try {
-		List<UsuarioVO> list = new ArrayList<>();	
-		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
-		ResultSet rs = dao2.buscarPorCpf(vo);
-		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Usuario não encontrado.");
-		}
-		else {
-		while(rs.next()) {
-			UsuarioVO vo2 = new UsuarioVO();
-			vo2.setId(rs.getLong("usuario_id"));
-			vo2.setLogin(rs.getString("usuario_login"));
-			vo2.setSenha(rs.getString("usuario_senha"));
-			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
-			vo2.setNome(rs.getString("pessoa_nome"));
-			vo2.setCpf(rs.getString("pessoa_cpf"));
-			vo2.setEndereco(rs.getString("pessoa_endereco"));
-			
-			list.add(vo2);
-			
-			System.out.println("Id: " + vo2.getId());
-			System.out.println("Login: " + vo2.getLogin());
-			System.out.println("Senha: " + vo2.getSenha());
-			
-			switch(vo2.getTipoUsuario()) {
-			case 0: System.out.println("Tipo de usuário: Administrador");
-			break;
-			case 1: System.out.println("Tipo de usuário: Médico");
-			break;
-			case 2: System.out.println("Tipo de usuário: Paciente");
-			break;
-			}
-			
-			System.out.println("Nome: " + vo2.getNome());
-			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereço: " + vo2.getEndereco());
-		}
-			return list;
-			}
-		}
-		catch(Exception e) {
-			throw new Exception(e.getMessage());
-		}	
-	}
+	
 	
 	public List<UsuarioVO> buscarPorNome(UsuarioVO vo) throws Exception{
 		try {
@@ -124,7 +78,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
 		ResultSet rs = dao2.buscarPorNome(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Usuario não encontrado.");
+			throw new Exception("Erro ao listar, Usuario nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -132,7 +86,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 			vo2.setId(rs.getLong("usuario_id"));
 			vo2.setLogin(rs.getString("usuario_login"));
 			vo2.setSenha(rs.getString("usuario_senha"));
-			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
@@ -144,17 +98,17 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 			System.out.println("Senha: " + vo2.getSenha());
 			
 			switch(vo2.getTipoUsuario()) {
-			case 0: System.out.println("Tipo de usuário: Administrador");
+			case 0: System.out.println("Tipo de usuï¿½rio: Administrador");
 			break;
-			case 1: System.out.println("Tipo de usuário: Médico");
+			case 1: System.out.println("Tipo de usuï¿½rio: Mï¿½dico");
 			break;
-			case 2: System.out.println("Tipo de usuário: Paciente");
+			case 2: System.out.println("Tipo de usuï¿½rio: Paciente");
 			break;
 			}
 			
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereço: " + vo2.getEndereco());
+			System.out.println("Endereï¿½o: " + vo2.getEndereco());
 		}
 			return list;
 			}
@@ -164,60 +118,113 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		}	
 	}
 
-	public List<UsuarioVO> buscarPorLogin(UsuarioVO vo) throws Exception{
+	public UsuarioVO buscarPorLogin(UsuarioVO vo) throws Exception{
 
 		try {
-		List<UsuarioVO> list = new ArrayList<>();	
+		UsuarioVO vo2 = new UsuarioVO();
 		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
 		ResultSet rs = dao2.buscarPorLogin(vo);
+		if(rs.next() == false) {
+			throw new Exception("Erro ao listar, Usuario nï¿½o encontrado.");
+		}
+		else {
+			vo2.setLogin(rs.getString("usuario_login"));
+			vo2.setSenha(rs.getString("usuario_senha"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
+			vo2.setNome(rs.getString("pessoa_nome"));
+			vo2.setCpf(rs.getString("pessoa_cpf"));
+			vo2.setEndereco(rs.getString("pessoa_endereco"));
+			
+		while(rs.next()) {
+			vo2.setLogin(rs.getString("usuario_login"));
+			vo2.setSenha(rs.getString("usuario_senha"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
+			vo2.setNome(rs.getString("pessoa_nome"));
+			vo2.setCpf(rs.getString("pessoa_cpf"));
+			vo2.setEndereco(rs.getString("pessoa_endereco"));
+			
+			System.out.println("Id: " + vo2.getId());
+			System.out.println("Login: " + vo2.getLogin());
+			System.out.println("Senha: " + vo2.getSenha());
+			
+			switch(vo2.getTipoUsuario()) {
+			case 0: System.out.println("Tipo de usuï¿½rio: Administrador");
+			break;
+			case 1: System.out.println("Tipo de usuï¿½rio: Mï¿½dico");
+			break;
+			case 2: System.out.println("Tipo de usuï¿½rio: Paciente");
+			break;
+			}
+			
+			System.out.println("Nome: " + vo2.getNome());
+			System.out.println("CPF: " + vo2.getCpf());
+			System.out.println("Endereï¿½o: " + vo2.getEndereco());
+		}
+			return vo2;
+			}
+		}
+		catch(Exception e) {
+			throw new Exception(e.getMessage());
+		}	
+	}
+
+	public UsuarioVO buscarPorCpf(UsuarioVO vo) throws Exception{
+
+		try {
+		UsuarioVO vo2 = new UsuarioVO();
+		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
+		ResultSet rs = dao2.buscarPorCpf(vo);
 		if(rs.next() == false) {
 			throw new Exception("Erro ao listar, Usuario não encontrado.");
 		}
 		else {
-		while(rs.next()) {
-			UsuarioVO vo2 = new UsuarioVO();
-			vo2.setId(rs.getLong("usuario_id"));
 			vo2.setLogin(rs.getString("usuario_login"));
 			vo2.setSenha(rs.getString("usuario_senha"));
-			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
 			
-			list.add(vo2);
+		while(rs.next()) {
+			vo2.setLogin(rs.getString("usuario_login"));
+			vo2.setSenha(rs.getString("usuario_senha"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
+			vo2.setNome(rs.getString("pessoa_nome"));
+			vo2.setCpf(rs.getString("pessoa_cpf"));
+			vo2.setEndereco(rs.getString("pessoa_endereco"));
 			
 			System.out.println("Id: " + vo2.getId());
 			System.out.println("Login: " + vo2.getLogin());
 			System.out.println("Senha: " + vo2.getSenha());
 			
 			switch(vo2.getTipoUsuario()) {
-			case 0: System.out.println("Tipo de usuário: Administrador");
+			case 0: System.out.println("Tipo de usuï¿½rio: Administrador");
 			break;
-			case 1: System.out.println("Tipo de usuário: Médico");
+			case 1: System.out.println("Tipo de usuï¿½rio: Mï¿½dico");
 			break;
-			case 2: System.out.println("Tipo de usuário: Paciente");
+			case 2: System.out.println("Tipo de usuï¿½rio: Paciente");
 			break;
 			}
 			
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereço: " + vo2.getEndereco());
+			System.out.println("Endereï¿½o: " + vo2.getEndereco());
 		}
-			return list;
+			return vo2;
 			}
 		}
 		catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}	
 	}
-
+	
 	public List<UsuarioVO> buscarPorTipoUsuario(UsuarioVO vo) throws Exception{
 		try {
 		List<UsuarioVO> list = new ArrayList<>();	
 		UsuarioDAO<UsuarioVO> dao2 = new UsuarioDAO<>();
 		ResultSet rs = dao2.buscarPorTipoUsuario(vo);
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Usuario não encontrado.");
+			throw new Exception("Erro ao listar, Usuario nï¿½o encontrado.");
 		}
 		else {
 		while(rs.next()) {
@@ -225,7 +232,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 			vo2.setId(rs.getLong("usuario_id"));
 			vo2.setLogin(rs.getString("usuario_login"));
 			vo2.setSenha(rs.getString("usuario_senha"));
-			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
@@ -237,17 +244,17 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 			System.out.println("Senha: " + vo2.getSenha());
 			
 			switch(vo2.getTipoUsuario()) {
-			case 0: System.out.println("Tipo de usuário: Administrador");
+			case 0: System.out.println("Tipo de usuï¿½rio: Administrador");
 			break;
-			case 1: System.out.println("Tipo de usuário: Médico");
+			case 1: System.out.println("Tipo de usuï¿½rio: Mï¿½dico");
 			break;
-			case 2: System.out.println("Tipo de usuário: Paciente");
+			case 2: System.out.println("Tipo de usuï¿½rio: Paciente");
 			break;
 			}
 			
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereço: " + vo2.getEndereco());
+			System.out.println("Endereï¿½o: " + vo2.getEndereco());
 		}
 			return list;
 			}
@@ -262,7 +269,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		List<UsuarioVO> list = new ArrayList<>();	
 		ResultSet rs = dao.buscarTudo();
 		if(rs.next() == false) {
-			throw new Exception("Erro ao listar, Usuarios não encontrados.");
+			throw new Exception("Erro ao listar, Usuarios nï¿½o encontrados.");
 		}
 		else {
 		while(rs.next()) {
@@ -270,7 +277,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 			vo2.setId(rs.getLong("usuario_id"));
 			vo2.setLogin(rs.getString("usuario_login"));
 			vo2.setSenha(rs.getString("usuario_senha"));
-			vo2.setTipoUsuario(rs.getInt("usuario_tipoUsuario"));
+			vo2.setTipoUsuario(rs.getInt("usuario_tipousuario"));
 			vo2.setNome(rs.getString("pessoa_nome"));
 			vo2.setCpf(rs.getString("pessoa_cpf"));
 			vo2.setEndereco(rs.getString("pessoa_endereco"));
@@ -282,17 +289,17 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 			System.out.println("Senha: " + vo2.getSenha());
 			
 			switch(vo2.getTipoUsuario()) {
-			case 0: System.out.println("Tipo de usuário: Administrador");
+			case 0: System.out.println("Tipo de usuï¿½rio: Administrador");
 			break;
-			case 1: System.out.println("Tipo de usuário: Médico");
+			case 1: System.out.println("Tipo de usuï¿½rio: Mï¿½dico");
 			break;
-			case 2: System.out.println("Tipo de usuário: Paciente");
+			case 2: System.out.println("Tipo de usuï¿½rio: Paciente");
 			break;
 			}
 			
 			System.out.println("Nome: " + vo2.getNome());
 			System.out.println("CPF: " + vo2.getCpf());
-			System.out.println("Endereço: " + vo2.getEndereco());
+			System.out.println("Endereï¿½o: " + vo2.getEndereco());
 		}
 			return list;
 			}
@@ -307,7 +314,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível remover, Usuario não encontrado.");
+				throw new Exception("Impossï¿½vel remover, Usuario nï¿½o encontrado.");
 			}
 			else {
 				dao.remover(vo);
@@ -331,7 +338,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel editar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao.editar(vo);
@@ -347,7 +354,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel editar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarCpf(vo);;
@@ -363,7 +370,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel editar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarEndereco(vo);;
@@ -379,7 +386,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel editar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarTipoUsuario(vo);;
@@ -395,7 +402,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel editar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarSenha(vo);;
@@ -411,7 +418,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO>{
 		try {
 			ResultSet rs = dao2.buscarPorId(vo);
 			if (rs.next()== false) {
-				throw new Exception("Impossível editar, usuário não encontrado.");
+				throw new Exception("Impossï¿½vel editar, usuï¿½rio nï¿½o encontrado.");
 			}
 			else {
 				dao2.editarLogin(vo);;

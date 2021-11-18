@@ -11,14 +11,17 @@ import model.vo.PacienteVO;
 public class PacienteDAO<VO extends PacienteVO> extends BaseDAO<VO>{
 	
 		public void inserir(VO vo) {
-		String sql = "INSERT INTO paciente(pessoa_nome,pessoa_endereco,pessoa_cpf,paciente_id) values (?,?,?,?)";
+		String sql = "INSERT INTO Paciente(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipoUsuario) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getEndereco());
 			ptst.setString(3,vo.getCpf());
-			ptst.setLong(4,vo.getId());
+			ptst.setString(4,vo.getLogin());
+			ptst.setString(5,vo.getSenha());
+			ptst.setInt(6,vo.getTipoUsuario());
+			//ptst.setLong(7,vo.getId());
 			
 			int affectedRows = ptst.executeUpdate();			
 			
@@ -39,16 +42,16 @@ public class PacienteDAO<VO extends PacienteVO> extends BaseDAO<VO>{
 	}
 		
 		public void removerPorCpf(VO vo) {
-			String sql = "DELETE * FROM paciente WHERE pessoa_cpf = ?";
-			PreparedStatement ptst;
+			String sql = "DELETE FROM paciente WHERE pessoa_cpf = '"+vo.getCpf()+"'";
+			Statement ptst;
 			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setString(1, vo.getCpf());
-				ptst.executeUpdate();
+				ptst = conn.createStatement();;
+				ptst.executeUpdate(sql);
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
-			}
+				}
+
 		}
 		
 		public void removerPorNome(VO vo) {
@@ -148,19 +151,19 @@ public class PacienteDAO<VO extends PacienteVO> extends BaseDAO<VO>{
 			return rs;
 		}
 										
-		public void editar(VO vo) {
-			String sql = "UPDATE paciente SET pessoa_nome = ? where paciente_id = ?";
-			PreparedStatement ptst;
-			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setString(1, vo.getNome());
-				ptst.setLong(2, vo.getId());
-				ptst.executeUpdate();
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
+		public void editar(VO vo) throws SQLException {
+            conn = getConnection();
+            String sql = "UPDATE paciente SET pessoa_nome = '" + vo.getNome() + "', pessoa_endereco = '" + vo.getEndereco() + "' WHERE pessoa_cpf = '" + vo.getCpf()+"'";
+
+            try {
+                Statement ptst = conn.createStatement();
+         
+                ptst.executeUpdate(sql);
+            } catch (SQLException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
 		
 		public void editarCpf(VO vo) {
 			String sql = "UPDATE paciente SET pessoa_cpf = ? where paciente_id = ?";

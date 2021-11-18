@@ -4,8 +4,8 @@ public class ProntuarioVO {
 
 	private String data;
 	private String observacoes;
-	private PacienteVO paciente;
-	private MedicoVO medico;
+	private String paciente;
+	private String medico;
 	private Long id;
 	
 	
@@ -32,36 +32,37 @@ public class ProntuarioVO {
 		}
 	}
 	
-	public PacienteVO getPaciente() {
+	public String getPaciente() {
 		return paciente;
 	}
-	public void setPaciente(PacienteVO paciente) {
-		if(paciente == null) {
-			
-		}else {
-				if(paciente.getNome().equals("") || paciente.getCpf().equals("")){
-					
-				}else {
-					this.paciente = paciente;
-				}
+
+	public void setPaciente(String paciente) {
+		if (paciente == null) {
+
+		} else {
+			if (paciente.equals("")) {
+
+			} else {
+				this.paciente = paciente;
 			}
 		}
-	
-	
-	public MedicoVO getMedico() {
+	}
+
+	public String getMedico() {
 		return medico;
 	}
-	public void setMedico(MedicoVO medico) {
-		if(medico == null) {
-			
-		}else {
-				if(medico.getNome().equals("") || medico.getCpf().equals("")){
-					
-				}else {
-					this.medico = medico;
-				}
+
+	public void setMedico(String medico) {
+		if (medico == null) {
+
+		} else {
+			if (medico.equals("")) {
+
+			} else {
+				this.medico = medico;
 			}
 		}
+	}
 	
 	public String getData() {
 		return data;

@@ -10,7 +10,7 @@ import model.vo.UsuarioVO;
 public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	
 	public void inserir(VO vo) {
-		String sql = "INSERT INTO usuario(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipoUsuario, usuario_id) values (?,?,?,?,?,?)";
+		String sql = "INSERT INTO usuario(pessoa_nome,pessoa_endereco,pessoa_cpf,usuario_login,usuario_senha,usuario_tipousuario, usuario_id) values (?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -54,7 +54,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 	
 	public void removerPorTipoUsuario(VO vo) {
-		String sql = "DELETE * FROM usuario WHERE usuario_tipoUsuario = ?";
+		String sql = "DELETE * FROM usuario WHERE usuario_tipousuario = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -106,7 +106,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 	
 	public ResultSet buscarPorTipoUsuario(VO vo) {
-		String sql = "SELECT * FROM usuario WHERE usuario_tipoUsuario = ?";
+		String sql = "SELECT * FROM usuario WHERE usuario_tipousuario = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 		try {
@@ -172,7 +172,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1,vo.getLogin());
-			rs = ptst.executeQuery(sql);
+			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -251,7 +251,7 @@ public class UsuarioDAO<VO extends UsuarioVO> extends BaseDAO<VO>{
 	}
 
 	public void editarTipoUsuario(VO vo) {
-		String sql = "UPDATE usuario SET usuario_tipoUsuario = ? where usuario_id = ?";
+		String sql = "UPDATE usuario SET usuario_tipousuario = ? where usuario_id = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);

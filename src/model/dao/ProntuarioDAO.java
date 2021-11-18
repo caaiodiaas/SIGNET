@@ -9,73 +9,56 @@ import model.vo.ProntuarioVO;
 
 public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 	
-		public void inserir(VO vo) {
-		String sql = "INSERT INTO Prontuario(prontuario_data,prontuario_observacoes, paciente_id, medico_id, prontuario_id) values (?,?,?,?,?)";
+	public void inserir(VO vo) {
+		String sql = "INSERT INTO prontuario(prontuario_data,prontuario_observacoes,paciente_nome,medico_nome) values (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
-			
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getData());
 			ptst.setString(2,vo.getObservacoes());
-			ptst.setLong(3,vo.getPaciente().getId());
-			ptst.setLong(4,vo.getMedico().getId());
-			ptst.setLong(5,vo.getId());
+			ptst.setString(3,vo.getPaciente());
+			ptst.setString(4,vo.getMedico());
+
 			
 			int affectedRows = ptst.executeUpdate();			
 			
 			if (affectedRows == 0) {
 				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
 			}
-			ResultSet generatedKeys = ptst.getGeneratedKeys();
-			if (generatedKeys.next()) {
-				vo.setId(generatedKeys.getLong(1));
-			}
-			else {
-				throw new SQLException("A inserção falhou. Nenhum Id foi retornado.");
-			}
-	
+
+			
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
+			}
+			
+	
+	public void remover(VO vo) {
+		String sql = "DELETE FROM prontuario WHERE paciente_nome = ? AND prontuario_data = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getPaciente());
+			ptst.setString(2, vo.getData());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
 			}
 	}
-	
-		public void remover(VO vo) {
-			String sql = "DELETE * FROM prontuario WHERE prontuario_id = ?";
-			PreparedStatement ptst;
-			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setLong(1, vo.getId());
-				ptst.executeUpdate();
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				}
-		}
 		
-		public void removerPorMedico(VO vo) {
-			String sql = "DELETE * FROM prontuario WHERE medico_id = ?";
-			PreparedStatement ptst;
-			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setLong(1, vo.getMedico().getId());
-				ptst.executeUpdate();
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				}
-		}
 		
 		public void removerPorPaciente(VO vo) {
-			String sql = "DELETE * FROM prontuario WHERE paciente_id = ?";
-			PreparedStatement ptst;
+			String sql = "DELETE FROM prontuario WHERE paciente_nome = '"+ vo.getPaciente()+"'";
+			Statement ptst;
 			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setLong(1, vo.getPaciente().getId());
-				ptst.executeUpdate();
+				ptst = conn.createStatement();;
+				ptst.executeUpdate(sql);
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
 				}
+
 		}
 		
 		public void removerPorData(VO vo) {
@@ -148,12 +131,12 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 		}
 		
 		public ResultSet buscarPorPaciente(VO vo) {
-			String sql = "SELECT * FROM prontuario WHERE paciente_id = ?";
+			String sql = "SELECT * FROM prontuario WHERE paciente_nome = ?";
 			PreparedStatement ptst;
 	        ResultSet rs = null;
 	        try {
 	            ptst = getConnection().prepareStatement(sql);
-	            ptst.setLong(1,vo.getPaciente().getId());
+	            ptst.setString(1,vo.getPaciente());
 	            rs = ptst.executeQuery(sql);
 	        } catch (SQLException e) {
 	            // TODO: handle exception
@@ -163,12 +146,12 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 		}
 		
 		public ResultSet buscarPorMedico(VO vo) {
-			String sql = "SELECT * FROM prontuario WHERE medico_id = ?";
+			String sql = "SELECT * FROM prontuario WHERE medico_nome = ?";
 			PreparedStatement ptst;
 	        ResultSet rs = null;
 	        try {
 	            ptst = getConnection().prepareStatement(sql);
-	            ptst.setLong(1,vo.getMedico().getId());
+	            ptst.setString(1,vo.getMedico());
 	            rs = ptst.executeQuery(sql);
 	        } catch (SQLException e) {
 	            // TODO: handle exception
@@ -177,19 +160,19 @@ public class ProntuarioDAO<VO extends ProntuarioVO> extends BaseDAO<VO>{
 			return rs;
 		}
 		
-		public void editar(VO vo) {
-			String sql = "UPDATE prontuario SET prontuario_observacoes = ? WHERE consulta_id = ?";
-			PreparedStatement ptst;
-			try {
-				ptst = getConnection().prepareStatement(sql);
-				ptst.setString(1, vo.getObservacoes());
-				ptst.setLong(2, vo.getId());
-				ptst.executeUpdate();
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
+		public void editar(VO vo) throws SQLException {
+            conn = getConnection();
+            String sql = "UPDATE prontuario SET medico_nome = '" + vo.getMedico() + "', prontuario_observacoes = '" + vo.getObservacoes() + "' WHERE paciente_nome = '" + vo.getPaciente()+"' AND prontuario_data = '"+vo.getData()+"'";
+
+            try {
+                Statement ptst = conn.createStatement();
+         
+                ptst.executeUpdate(sql);
+            } catch (SQLException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
 		
 		public void editarData(VO vo) {
 			String sql = "UPDATE prontuario SET prontuario_data = ? WHERE consulta_id = ?";
